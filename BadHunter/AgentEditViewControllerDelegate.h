@@ -7,11 +7,11 @@
 //
 
 
-@class DetailViewController;
+@class AgentEditViewController;
 
 @protocol AgentEditViewControllerDelegate <NSObject>
 
-- (void) dismissAgentEditViewController:(DetailViewController *)agentEditVC
+- (void) dismissAgentEditViewController:(AgentEditViewController *)agentEditVC
                            modifiedData:(BOOL)modifiedData;
 
 @end

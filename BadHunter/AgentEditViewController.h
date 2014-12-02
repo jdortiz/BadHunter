@@ -11,7 +11,7 @@
 #import "AgentEditViewControllerDelegate.h"
 
 
-@interface DetailViewController : UIViewController
+@interface AgentEditViewController : UIViewController
 
 @property (strong, nonatomic) id agent;
 @property (weak, nonatomic) id<AgentEditViewControllerDelegate> delegate;

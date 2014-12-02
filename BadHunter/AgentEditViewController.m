@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "AgentEditViewController.h"
 
-@interface DetailViewController ()
+@interface AgentEditViewController ()
 
 @end
 
-@implementation DetailViewController
+@implementation AgentEditViewController
 
 #pragma mark - Parameters & Constants
 
@@ -23,14 +23,14 @@ NSArray *motivationValues;
 
 #pragma mark - Lifecycle
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     [self configureView];
 }
 
 
-- (void)configureView {
+- (void) configureView {
     // Update the user interface for the detail item.
     if (self.agent) {
         [self initializeDestroyPowerViews];
@@ -131,23 +131,6 @@ NSArray *motivationValues;
     NSUInteger motivation = [[self.agent valueForKey:@"motivation"] unsignedIntegerValue];
     NSUInteger appraisal = (destructionPower + motivation) / 2;
     self.appraisalLabel.text = appraisalValues[appraisal];
-}
-
-
-#pragma mark - Managing the detail item
-
-- (void)setAgent:(id)newDetailItem {
-    if (_agent != newDetailItem) {
-        _agent = newDetailItem;
-            
-        // Update the view.
-        [self configureView];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

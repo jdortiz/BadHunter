@@ -12,7 +12,7 @@
 #import "AgentEditViewControllerDelegate.h"
 
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate,
+@interface AgentsViewController : UITableViewController <NSFetchedResultsControllerDelegate,
 AgentEditViewControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

@@ -10,8 +10,8 @@
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
-		CFB207C51A2DD6A400BD3B27 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C41A2DD6A400BD3B27 /* MasterViewController.m */; };
-		CFB207C81A2DD6A400BD3B27 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C71A2DD6A400BD3B27 /* DetailViewController.m */; };
+		CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */; };
+		CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */; };
 		CFB207CB1A2DD6A400BD3B27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB207C91A2DD6A400BD3B27 /* Main.storyboard */; };
 		CFB207CD1A2DD6A400BD3B27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */; };
 		CFB207D01A2DD6A400BD3B27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */; };
@@ -35,10 +35,10 @@
 		CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CFB207C11A2DD6A400BD3B27 /* BadHunter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BadHunter.xcdatamodel; sourceTree = "<group>"; };
-		CFB207C31A2DD6A400BD3B27 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		CFB207C41A2DD6A400BD3B27 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		CFB207C61A2DD6A400BD3B27 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		CFB207C71A2DD6A400BD3B27 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentsViewController.h; sourceTree = "<group>"; };
+		CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentsViewController.m; sourceTree = "<group>"; };
+		CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewController.h; sourceTree = "<group>"; };
+		CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgentEditViewController.m; sourceTree = "<group>"; };
 		CFB207CA1A2DD6A400BD3B27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFB207CF1A2DD6A400BD3B27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -89,11 +89,11 @@
 			children = (
 				CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */,
 				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
-				CFB207C31A2DD6A400BD3B27 /* MasterViewController.h */,
-				CFB207C41A2DD6A400BD3B27 /* MasterViewController.m */,
+				CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */,
+				CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */,
 				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
-				CFB207C61A2DD6A400BD3B27 /* DetailViewController.h */,
-				CFB207C71A2DD6A400BD3B27 /* DetailViewController.m */,
+				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
+				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
 				CFB207C91A2DD6A400BD3B27 /* Main.storyboard */,
 				CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */,
 				CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */,
@@ -229,8 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB207C81A2DD6A400BD3B27 /* DetailViewController.m in Sources */,
-				CFB207C51A2DD6A400BD3B27 /* MasterViewController.m in Sources */,
+				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
+				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
 				CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */,
 				CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */,
