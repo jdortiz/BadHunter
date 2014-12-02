@@ -58,6 +58,18 @@ NSArray *motivationValues;
 }
 
 
+#pragma mark - UI Actions
+
+- (IBAction) cancel:(id)sender {
+    [self.delegate dismissAgentEditViewController:self modifiedData:NO];
+}
+
+
+- (IBAction) save:(id)sender {
+    [self.delegate dismissAgentEditViewController:self modifiedData:YES];
+}
+
+
 #pragma mark - Managing the detail item
 
 - (void)setAgent:(id)newDetailItem {

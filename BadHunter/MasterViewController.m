@@ -72,6 +72,7 @@ static NSString *const segueCreateAgent = @"CreateAgent";
     NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
                                                            inManagedObjectContext:self.managedObjectContext];
     detailVC.agent = agent;
+    detailVC.delegate = self;
 }
 
 
@@ -114,7 +115,7 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[object valueForKey:@"name"] description];
 }
 
 #pragma mark - Fetched results controller
@@ -218,5 +219,12 @@ static NSString *const segueCreateAgent = @"CreateAgent";
     [self.tableView reloadData];
 }
  */
+
+
+#pragma mark - Agent edit view controller delegate
+
+- (void) dismissAgentEditViewController:(id)agentEditVC modifiedData:(BOOL)modifiedData {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

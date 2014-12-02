@@ -150,7 +150,18 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Bad guy" id="cra-N8-TIN"/>
+                    <navigationItem key="navigationItem" title="Bad guy" id="cra-N8-TIN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7tN-5D-dR9">
+                            <connections>
+                                <action selector="cancel:" destination="Ah7-4n-0Wa" id="uHa-gX-qy3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="foR-Oh-esr">
+                            <connections>
+                                <action selector="save:" destination="Ah7-4n-0Wa" id="8Ua-Cd-vhe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="appraisalLabel" destination="Ath-1r-OEq" id="70O-BI-9l4"/>
                         <outlet property="destructionPowerLabel" destination="iA7-Vl-HjU" id="djl-8m-byZ"/>

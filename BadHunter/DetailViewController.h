@@ -6,11 +6,15 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
+#import "AgentEditViewControllerDelegate.h"
+
 
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) id agent;
+@property (weak, nonatomic) id<AgentEditViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *appraisalLabel;

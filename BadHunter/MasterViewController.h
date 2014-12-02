@@ -6,10 +6,14 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "AgentEditViewControllerDelegate.h"
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate,
+AgentEditViewControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

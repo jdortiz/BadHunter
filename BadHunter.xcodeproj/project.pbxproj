@@ -45,6 +45,7 @@
 		CFB207D51A2DD6A400BD3B27 /* BadHunterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHunterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207DA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadHunterTests.m; sourceTree = "<group>"; };
+		CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,7 @@
 				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
 				CFB207C31A2DD6A400BD3B27 /* MasterViewController.h */,
 				CFB207C41A2DD6A400BD3B27 /* MasterViewController.m */,
+				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
 				CFB207C61A2DD6A400BD3B27 /* DetailViewController.h */,
 				CFB207C71A2DD6A400BD3B27 /* DetailViewController.m */,
 				CFB207C91A2DD6A400BD3B27 /* Main.storyboard */,
@@ -422,6 +424,7 @@
 				CFB207E11A2DD6A400BD3B27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CFB207E21A2DD6A400BD3B27 /* Build configuration list for PBXNativeTarget "BadHunterTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +433,7 @@
 				CFB207E41A2DD6A400BD3B27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
