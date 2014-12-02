@@ -14,6 +14,50 @@
 
 @implementation DetailViewController
 
+#pragma mark - Parameters & Constants
+
+NSArray *appraisalValues;
+NSArray *destroyPowerValues;
+NSArray *motivationValues;
+
+
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    [self configureView];
+}
+
+
+- (void)configureView {
+    // Update the user interface for the detail item.
+    if (self.detailItem) {
+        [self initializeDestroyPowerViews];
+        [self initializeMotivationViews];
+        [self initializeAppraisalView];
+    }
+}
+
+
+- (void) initializeDestroyPowerViews {
+    destroyPowerValues = @[@"Soft", @"Weak", @"Potential", @"Destroyer", @"Nuke"];
+    self.destructionPowerLabel.text = [destroyPowerValues objectAtIndex:0];
+}
+
+
+- (void) initializeMotivationViews {
+    motivationValues = @[@"Doesn't care", @"Would like to", @"Quite", @"Interested", @"Focused"];
+    self.motivationLabel.text = [motivationValues objectAtIndex:0];
+}
+
+
+- (void) initializeAppraisalView {
+    appraisalValues = @[@"No way", @"Better not", @"Maybe", @"Yes", @"A must"];
+    self.appraisalLabel.text = [appraisalValues objectAtIndex:0];
+}
+
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem {
@@ -23,19 +67,6 @@
         // Update the view.
         [self configureView];
     }
-}
-
-- (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-    }
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning {

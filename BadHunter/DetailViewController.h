@@ -11,7 +11,13 @@
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *appraisalLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *destructionPowerStepper;
+@property (weak, nonatomic) IBOutlet UILabel *destructionPowerLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *motivationStepper;
+@property (weak, nonatomic) IBOutlet UILabel *motivationLabel;
 
 @end
 
