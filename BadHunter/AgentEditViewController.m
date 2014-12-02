@@ -62,6 +62,30 @@ NSArray *motivationValues;
 }
 
 
+- (void) viewWillAppear:(BOOL)animated {
+    [self addObserverForProperties];
+}
+
+
+- (void)addObserverForProperties {
+    [self addObserver:self forKeyPath:@"agent.destructionPower"
+              options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"agent.motivation"
+              options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [self removeObserverForProperties];
+}
+
+
+- (void)removeObserverForProperties {
+    [self removeObserver:self forKeyPath:@"agent.destructionPower"];
+    [self removeObserver:self forKeyPath:@"agent.motivation"];
+}
+
+
 #pragma mark - UI Actions
 
 - (IBAction) cancel:(id)sender {
@@ -82,7 +106,7 @@ NSArray *motivationValues;
 
 - (IBAction) changeDestructionPower:(id)sender {
     [self updateDestructionPowerValue];
-    [self updateDestructionPowerViews];
+    [self displayAppraisalLabel];
 }
 
 
@@ -92,27 +116,15 @@ NSArray *motivationValues;
 }
 
 
-- (void) updateDestructionPowerViews {
-    [self displayDestructionPowerLabel];
-    [self displayAppraisalLabel];
-}
-
-
 - (IBAction) changeMotivation:(id)sender {
     [self updateMotivationValue];
-    [self updateMotivationViews];
+    [self displayAppraisalLabel];
 }
 
 
 - (void) updateMotivationValue {
     NSUInteger newMotivation = (NSUInteger)(self.motivationStepper.value + 0.5);
     self.agent.motivation = @(newMotivation);
-}
-
-
-- (void) updateMotivationViews {
-    [self displayMotivationLabel];
-    [self displayAppraisalLabel];
 }
 
 
@@ -135,6 +147,17 @@ NSArray *motivationValues;
     NSUInteger motivation = [self.agent.motivation unsignedIntegerValue];
     NSUInteger appraisal = (destructionPower + motivation) / 2;
     self.appraisalLabel.text = appraisalValues[appraisal];
+}
+
+
+#pragma mark - Observations
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"agent.destructionPower"]) {
+        [self displayDestructionPowerLabel];
+    } else if ([keyPath isEqualToString:@"agent.motivation"]) {
+        [self displayMotivationLabel];
+    }
 }
 
 @end
