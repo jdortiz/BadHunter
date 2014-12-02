@@ -8,6 +8,7 @@
 
 #import "AgentsViewController.h"
 #import "AgentEditViewController.h"
+#import "Agent.h"
 
 
 @interface AgentsViewController ()
@@ -44,8 +45,8 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 - (void) prepareAgentEditViewController:(AgentEditViewController *)agentEditVC {
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     [self.managedObjectContext.undoManager beginUndoGrouping];
-    NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                           inManagedObjectContext:self.managedObjectContext];
+    Agent *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                 inManagedObjectContext:self.managedObjectContext];
     agentEditVC.agent = agent;
     agentEditVC.delegate = self;
 }
@@ -88,10 +89,12 @@ static NSString *const segueCreateAgent = @"CreateAgent";
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
+
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Agent *agent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = agent.name;
 }
+
 
 #pragma mark - Fetched results controller
 

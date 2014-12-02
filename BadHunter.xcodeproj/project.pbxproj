@@ -16,6 +16,7 @@
 		CFB207CD1A2DD6A400BD3B27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */; };
 		CFB207D01A2DD6A400BD3B27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */; };
 		CFB207DC1A2DD6A400BD3B27 /* BadHunterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */; };
+		CFF9EF341A2E3F71008510EF /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF9EF331A2E3F71008510EF /* Agent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		CFB207DA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadHunterTests.m; sourceTree = "<group>"; };
 		CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewControllerDelegate.h; sourceTree = "<group>"; };
+		CFF9EF321A2E3F71008510EF /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		CFF9EF331A2E3F71008510EF /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,17 +90,12 @@
 		CFB207B81A2DD6A400BD3B27 /* BadHunter */ = {
 			isa = PBXGroup;
 			children = (
-				CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */,
-				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
-				CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */,
-				CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */,
-				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
-				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
-				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
+				CFF9EF351A2E3F8F008510EF /* Model */,
+				CFF9EF361A2E3FA5008510EF /* App Delegate */,
+				CFF9EF371A2E3FB6008510EF /* View Controllers */,
 				CFB207C91A2DD6A400BD3B27 /* Main.storyboard */,
 				CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */,
 				CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */,
-				CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */,
 				CFB207B91A2DD6A400BD3B27 /* Supporting Files */,
 			);
 			path = BadHunter;
@@ -127,6 +125,37 @@
 				CFB207DA1A2DD6A400BD3B27 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFF9EF351A2E3F8F008510EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */,
+				CFF9EF321A2E3F71008510EF /* Agent.h */,
+				CFF9EF331A2E3F71008510EF /* Agent.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CFF9EF361A2E3FA5008510EF /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */,
+				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		CFF9EF371A2E3FB6008510EF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */,
+				CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */,
+				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
+				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
+				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +261,7 @@
 				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
 				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
+				CFF9EF341A2E3F71008510EF /* Agent.m in Sources */,
 				CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */,
 				CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */,
 			);
