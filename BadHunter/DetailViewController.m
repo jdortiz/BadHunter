@@ -42,13 +42,13 @@ NSArray *motivationValues;
 
 - (void) initializeDestroyPowerViews {
     destroyPowerValues = @[@"Soft", @"Weak", @"Potential", @"Destroyer", @"Nuke"];
-    self.destructionPowerLabel.text = [destroyPowerValues objectAtIndex:0];
+    [self displayDestructionPowerLabel];
 }
 
 
 - (void) initializeMotivationViews {
     motivationValues = @[@"Doesn't care", @"Would like to", @"Quite", @"Interested", @"Focused"];
-    self.motivationLabel.text = [motivationValues objectAtIndex:0];
+    [self displayMotivationLabel];
 }
 
 
@@ -77,14 +77,60 @@ NSArray *motivationValues;
 
 
 - (IBAction) changeDestructionPower:(id)sender {
+    [self updateDestructionPowerValue];
+    [self updateDestructionPowerViews];
+}
+
+
+- (void) updateDestructionPowerValue {
     NSUInteger newDestructionPower = (NSUInteger)(self.destructionPowerStepper.value + 0.5);
     [self.agent setValue:@(newDestructionPower) forKey:@"destructionPower"];
 }
 
 
+- (void) updateDestructionPowerViews {
+    [self displayDestructionPowerLabel];
+    [self displayAppraisalLabel];
+}
+
+
 - (IBAction) changeMotivation:(id)sender {
+    [self updateMotivationValue];
+    [self updateMotivationViews];
+}
+
+
+- (void) updateMotivationValue {
     NSUInteger newMotivation = (NSUInteger)(self.motivationStepper.value + 0.5);
     [self.agent setValue:@(newMotivation) forKey:@"motivation"];
+}
+
+
+- (void) updateMotivationViews {
+    [self displayMotivationLabel];
+    [self displayAppraisalLabel];
+}
+
+
+#pragma mark - Presentation
+
+- (void) displayDestructionPowerLabel {
+    NSUInteger destructionPower = [[self.agent valueForKey:@"destructionPower"] unsignedIntegerValue];
+    self.destructionPowerLabel.text = destroyPowerValues[destructionPower];
+}
+
+
+- (void) displayMotivationLabel {
+    NSUInteger motivation = [[self.agent valueForKey:@"motivation"] unsignedIntegerValue];
+    self.motivationLabel.text = motivationValues[motivation];
+}
+
+
+- (void) displayAppraisalLabel {
+    NSUInteger destructionPower = [[self.agent valueForKey:@"destructionPower"] unsignedIntegerValue];
+    NSUInteger motivation = [[self.agent valueForKey:@"motivation"] unsignedIntegerValue];
+    NSUInteger appraisal = (destructionPower + motivation) / 2;
+    self.appraisalLabel.text = appraisalValues[appraisal];
 }
 
 

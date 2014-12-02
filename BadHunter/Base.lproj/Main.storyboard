@@ -102,13 +102,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="DcC-tV-tVu">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="DcC-tV-tVu">
                                 <rect key="frame" x="36" y="178" width="94" height="29"/>
                                 <connections>
                                     <action selector="changeDestructionPower:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="aVV-Zd-0WS"/>
                                 </connections>
                             </stepper>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fUs-iK-8pB">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="fUs-iK-8pB">
                                 <rect key="frame" x="36" y="243" width="94" height="29"/>
                                 <connections>
                                     <action selector="changeMotivation:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="nUg-Tj-Sc3"/>
