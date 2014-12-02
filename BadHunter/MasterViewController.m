@@ -69,6 +69,7 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 
 - (void) prepareDetailViewController:(DetailViewController *)detailVC {
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    [self.managedObjectContext.undoManager beginUndoGrouping];
     NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
                                                            inManagedObjectContext:self.managedObjectContext];
     detailVC.agent = agent;
@@ -224,7 +225,26 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 #pragma mark - Agent edit view controller delegate
 
 - (void) dismissAgentEditViewController:(id)agentEditVC modifiedData:(BOOL)modifiedData {
+    [self.managedObjectContext.undoManager setActionName:@"new agent"];
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    if (modifiedData) {
+        [self saveContext];
+    } else {
+        [self.managedObjectContext.undoManager undo];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void) saveContext {
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Couldn't save data: %@, %@", error, [error userInfo]);
+        abort();
+    }
 }
 
 @end

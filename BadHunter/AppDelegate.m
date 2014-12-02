@@ -99,19 +99,27 @@
 }
 
 
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *) managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    if (_managedObjectContext == nil) {
+        NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+        if (!coordinator) {
+            return nil;
+        }
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+
+        [self prepareUndoForContext:_managedObjectContext];
     }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+
     return _managedObjectContext;
+}
+
+
+- (void) prepareUndoForContext:(NSManagedObjectContext *)moc {
+    moc.undoManager = [[NSUndoManager alloc] init];
+    moc.undoManager.groupsByEvent = NO;
+    moc.undoManager.levelsOfUndo = 10;
 }
 
 #pragma mark - Core Data Saving support
