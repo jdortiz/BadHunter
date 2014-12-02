@@ -104,9 +104,15 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="DcC-tV-tVu">
                                 <rect key="frame" x="36" y="178" width="94" height="29"/>
+                                <connections>
+                                    <action selector="changeDestructionPower:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="aVV-Zd-0WS"/>
+                                </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fUs-iK-8pB">
                                 <rect key="frame" x="36" y="243" width="94" height="29"/>
+                                <connections>
+                                    <action selector="changeMotivation:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="nUg-Tj-Sc3"/>
+                                </connections>
                             </stepper>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Baddie name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8T-t2-Ohn">
                                 <rect key="frame" x="36" y="72" width="528" height="30"/>

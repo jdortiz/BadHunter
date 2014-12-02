@@ -66,7 +66,25 @@ NSArray *motivationValues;
 
 
 - (IBAction) save:(id)sender {
+    [self assignDataToAgent];
     [self.delegate dismissAgentEditViewController:self modifiedData:YES];
+}
+
+
+- (void) assignDataToAgent {
+    [self.agent setValue:self.nameTextField.text forKey:@"name"];
+}
+
+
+- (IBAction) changeDestructionPower:(id)sender {
+    NSUInteger newDestructionPower = (NSUInteger)(self.destructionPowerStepper.value + 0.5);
+    [self.agent setValue:@(newDestructionPower) forKey:@"destructionPower"];
+}
+
+
+- (IBAction) changeMotivation:(id)sender {
+    NSUInteger newMotivation = (NSUInteger)(self.motivationStepper.value + 0.5);
+    [self.agent setValue:@(newMotivation) forKey:@"motivation"];
 }
 
 
