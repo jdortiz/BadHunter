@@ -15,6 +15,13 @@
 
 @implementation MasterViewController
 
+#pragma mark - Parameters & Constants
+
+static NSString *const segueCreateAgent = @"CreateAgent";
+
+
+#pragma mark - Lifecycle
+
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
@@ -52,13 +59,21 @@
 
 #pragma mark - Segues
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:segueCreateAgent]) {
+        DetailViewController *detailVC = (DetailViewController *)[[segue destinationViewController] topViewController];
+        [self prepareDetailViewController:detailVC];
     }
 }
+
+
+- (void) prepareDetailViewController:(DetailViewController *)detailVC {
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                           inManagedObjectContext:self.managedObjectContext];
+    detailVC.agent = agent;
+}
+
 
 #pragma mark - Table View
 

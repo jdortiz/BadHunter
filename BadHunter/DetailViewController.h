@@ -10,7 +10,7 @@
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) id agent;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *appraisalLabel;
@@ -20,4 +20,3 @@
 @property (weak, nonatomic) IBOutlet UILabel *motivationLabel;
 
 @end
-

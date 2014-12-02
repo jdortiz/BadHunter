@@ -32,7 +32,7 @@ NSArray *motivationValues;
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
+    if (self.agent) {
         [self initializeDestroyPowerViews];
         [self initializeMotivationViews];
         [self initializeAppraisalView];
@@ -60,9 +60,9 @@ NSArray *motivationValues;
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+- (void)setAgent:(id)newDetailItem {
+    if (_agent != newDetailItem) {
+        _agent = newDetailItem;
             
         // Update the view.
         [self configureView];
