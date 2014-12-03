@@ -72,6 +72,8 @@ NSArray *motivationValues;
               options:NSKeyValueObservingOptionNew context:NULL];
     [self addObserver:self forKeyPath:@"agent.motivation"
               options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"agent.appraisal"
+              options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 
@@ -83,6 +85,7 @@ NSArray *motivationValues;
 - (void)removeObserverForProperties {
     [self removeObserver:self forKeyPath:@"agent.destructionPower"];
     [self removeObserver:self forKeyPath:@"agent.motivation"];
+    [self removeObserver:self forKeyPath:@"agent.appraisal"];
 }
 
 
@@ -105,24 +108,12 @@ NSArray *motivationValues;
 
 
 - (IBAction) changeDestructionPower:(id)sender {
-    [self updateDestructionPowerValue];
-    [self displayAppraisalLabel];
-}
-
-
-- (void) updateDestructionPowerValue {
     NSUInteger newDestructionPower = (NSUInteger)(self.destructionPowerStepper.value + 0.5);
     self.agent.destructionPower = @(newDestructionPower);
 }
 
 
 - (IBAction) changeMotivation:(id)sender {
-    [self updateMotivationValue];
-    [self displayAppraisalLabel];
-}
-
-
-- (void) updateMotivationValue {
     NSUInteger newMotivation = (NSUInteger)(self.motivationStepper.value + 0.5);
     self.agent.motivation = @(newMotivation);
 }
@@ -143,9 +134,7 @@ NSArray *motivationValues;
 
 
 - (void) displayAppraisalLabel {
-    NSUInteger destructionPower = [self.agent.destructionPower unsignedIntegerValue];
-    NSUInteger motivation = [self.agent.motivation unsignedIntegerValue];
-    NSUInteger appraisal = (destructionPower + motivation) / 2;
+    NSUInteger appraisal = [self.agent.appraisal unsignedIntegerValue];
     self.appraisalLabel.text = appraisalValues[appraisal];
 }
 
@@ -157,6 +146,8 @@ NSArray *motivationValues;
         [self displayDestructionPowerLabel];
     } else if ([keyPath isEqualToString:@"agent.motivation"]) {
         [self displayMotivationLabel];
+    } else if ([keyPath isEqualToString:@"agent.appraisal"]) {
+        [self displayAppraisalLabel];
     }
 }
 
