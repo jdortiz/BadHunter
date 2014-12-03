@@ -13,7 +13,7 @@
 @class Agent;
 
 
-@interface AgentEditViewController : UIViewController
+@interface AgentEditViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) Agent *agent;
 @property (weak, nonatomic) id<AgentEditViewControllerDelegate> delegate;

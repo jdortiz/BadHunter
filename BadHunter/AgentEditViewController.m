@@ -7,7 +7,7 @@
 //
 
 #import "AgentEditViewController.h"
-#import "Agent.h"
+#import "Agent+Model.h"
 
 
 @interface AgentEditViewController ()
@@ -35,8 +35,8 @@ NSArray *motivationValues;
 
 
 - (void) configureView {
-    // Update the user interface for the detail item.
     if (self.agent) {
+        [self displayAgentName];
         [self initializeDestroyPowerViews];
         [self initializeMotivationViews];
         [self initializeAppraisalView];
@@ -46,13 +46,25 @@ NSArray *motivationValues;
 
 - (void) initializeDestroyPowerViews {
     destroyPowerValues = @[@"Soft", @"Weak", @"Potential", @"Destroyer", @"Nuke"];
+    [self initializeDestructionPowerStepper];
     [self displayDestructionPowerLabel];
+}
+
+
+- (void) initializeDestructionPowerStepper {
+    self.destructionPowerStepper.value = [self.agent.destructionPower floatValue];
 }
 
 
 - (void) initializeMotivationViews {
     motivationValues = @[@"Doesn't care", @"Would like to", @"Quite", @"Interested", @"Focused"];
+    [self initializeMotivationStepper];
     [self displayMotivationLabel];
+}
+
+
+- (void) initializeMotivationStepper {
+    self.motivationStepper.value = [self.agent.motivation floatValue];
 }
 
 
@@ -121,6 +133,11 @@ NSArray *motivationValues;
 
 #pragma mark - Presentation
 
+- (void) displayAgentName {
+    self.nameTextField.text = self.agent.name;
+}
+
+
 - (void) displayDestructionPowerLabel {
     NSUInteger destructionPower = [self.agent.destructionPower unsignedIntegerValue];
     self.destructionPowerLabel.text = destroyPowerValues[destructionPower];
@@ -149,6 +166,19 @@ NSArray *motivationValues;
     } else if ([keyPath isEqualToString:@"agent.appraisal"]) {
         [self displayAppraisalLabel];
     }
+}
+
+
+#pragma mark - Text field delegate
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    BOOL shouldReturn = YES;
+    if (textField == self.nameTextField) {
+        [textField resignFirstResponder];
+        shouldReturn = NO;
+    }
+
+    return shouldReturn;
 }
 
 @end

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Agent" representedClassName="Agent">
         <attribute name="appraisal" transient="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="destructionPower" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="motivation" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="pictureUUID" optional="YES" attributeType="String" syncable="YES"/>
         <userInfo/>
     </entity>
     <elements>
-        <element name="Agent" positionX="261" positionY="189" width="128" height="105"/>
+        <element name="Agent" positionX="261" positionY="189" width="128" height="120"/>
     </elements>
 </model>
