@@ -68,24 +68,33 @@ NSString *const agentPropertyPictureUUID = @"pictureUUID";
 
 #pragma mark - Fetch requests
 
++ (NSFetchRequest *) fetchForAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors {
+    NSFetchRequest *fetchRequest = [Agent baseFetchForAgents];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    
+    return fetchRequest;
+}
+
+
 + (NSFetchRequest *) fetchForAllAgents {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:agentEntityName];
-    fetchRequest.fetchBatchSize = 20;
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:agentPropertyName
                                                                    ascending:YES];
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+
+    return [Agent fetchForAllAgentsWithSortDescriptors:@[sortDescriptor]];
+}
+
+
++ (NSFetchRequest *) fetchForAllAgentsWithPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [Agent fetchForAllAgents];
+    fetchRequest.predicate = predicate;
 
     return fetchRequest;
 }
 
 
-+ (NSFetchRequest *) fetchForAllAgentsWithPredicate:(NSPredicate *)predicate {
++ (NSFetchRequest *) baseFetchForAgents {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:agentEntityName];
     fetchRequest.fetchBatchSize = 20;
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:agentPropertyName
-                                                                   ascending:YES];
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    fetchRequest.predicate = predicate;
     
     return fetchRequest;
 }
