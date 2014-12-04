@@ -13,12 +13,14 @@
 @class Agent;
 
 
-@interface AgentEditViewController : UIViewController <UITextFieldDelegate>
+@interface AgentEditViewController : UIViewController <UITextFieldDelegate, UIActionSheetDelegate,
+UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) Agent *agent;
 @property (weak, nonatomic) id<AgentEditViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UILabel *appraisalLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *destructionPowerStepper;
 @property (weak, nonatomic) IBOutlet UILabel *destructionPowerLabel;

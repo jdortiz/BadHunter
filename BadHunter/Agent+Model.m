@@ -64,4 +64,16 @@ NSString *const agentPropertyPictureUUID = @"pictureUUID";
     [self setPrimitiveValue:@(appraisal) forKey:agentPropertyAppraisal];
 }
 
+
+#pragma mark - Picture logic
+
+- (NSString *) generatePictureUUID {
+    CFUUIDRef     fileUUID;
+    CFStringRef   fileUUIDString;
+    fileUUID = CFUUIDCreate(kCFAllocatorDefault);
+    fileUUIDString = CFUUIDCreateString(kCFAllocatorDefault, fileUUID);
+    CFRelease(fileUUID);
+    return (__bridge_transfer NSString *)fileUUIDString;
+}
+
 @end

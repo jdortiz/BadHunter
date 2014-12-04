@@ -16,4 +16,6 @@ extern NSString *const agentPropertyPictureUUID;
 
 @interface Agent (Model)
 
+- (NSString *) generatePictureUUID;
+
 @end
