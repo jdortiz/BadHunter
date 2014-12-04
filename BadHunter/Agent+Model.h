@@ -16,6 +16,8 @@ extern NSString *const agentPropertyPictureUUID;
 
 @interface Agent (Model)
 
++ (NSFetchRequest *) fetchForAllAgents;
++ (NSFetchRequest *) fetchForAllAgentsWithPredicate:(NSPredicate *)predicate;
 - (NSString *) generatePictureUUID;
 
 @end

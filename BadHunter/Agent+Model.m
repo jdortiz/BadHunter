@@ -8,6 +8,7 @@
 
 #import "Agent+Model.h"
 
+NSString *const agentEntityName = @"Agent";
 NSString *const agentPropertyName = @"name";
 NSString *const agentPropertyAppraisal = @"appraisal";
 NSString *const agentPropertyDestructionPower = @"destructionPower";
@@ -64,6 +65,30 @@ NSString *const agentPropertyPictureUUID = @"pictureUUID";
     [self setPrimitiveValue:@(appraisal) forKey:agentPropertyAppraisal];
 }
 
+
+#pragma mark - Fetch requests
+
++ (NSFetchRequest *) fetchForAllAgents {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:agentEntityName];
+    fetchRequest.fetchBatchSize = 20;
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:agentPropertyName
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+
+    return fetchRequest;
+}
+
+
++ (NSFetchRequest *) fetchForAllAgentsWithPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:agentEntityName];
+    fetchRequest.fetchBatchSize = 20;
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:agentPropertyName
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    fetchRequest.predicate = predicate;
+    
+    return fetchRequest;
+}
 
 #pragma mark - Picture logic
 
