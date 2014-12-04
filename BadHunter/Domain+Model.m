@@ -24,6 +24,8 @@ NSString *const domainPropertyName = @"name";
 }
 
 
+#pragma mark - Fetch requests and queries
+
 + (Domain *) fetchInMOC:(NSManagedObjectContext *)moc withName:(NSString *)name {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:domainEntityName];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", domainPropertyName, name];
@@ -31,6 +33,14 @@ NSString *const domainPropertyName = @"name";
     NSArray *results = [moc executeFetchRequest:fetchRequest error:NULL];
     
     return [results lastObject];
+}
+
+
++ (NSFetchRequest *) fetchForControlledDomains {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:domainEntityName];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(SUBQUERY(agents,$x,$x.destructionPower >= 3)).@count > 1"];
+
+    return fetchRequest;
 }
 
 @end
