@@ -114,9 +114,7 @@ static NSString *const segueEditAgent = @"EditAgent";
         [NSFetchedResultsController deleteCacheWithName:@"Agents"];
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K < %@",
-                                  agentPropertyDestructionPower, @2];
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Agent fetchForAllAgentsWithPredicate:predicate]
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Agent fetchForAllAgents]
                                                                         managedObjectContext:self.managedObjectContext
                                                                                                       sectionNameKeyPath:nil cacheName:@"Agents"];
         _fetchedResultsController.delegate = self;

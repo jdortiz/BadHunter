@@ -10,9 +10,11 @@
 		CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */; };
 		CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */; };
 		CF6D6DB61A30499700C8CADA /* UIImage+AgentAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */; };
-		CF6D6DC81A30DCCF00C8CADA /* FreakType.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC71A30DCCF00C8CADA /* FreakType.m */; };
-		CF6D6DCB1A30DCD000C8CADA /* Domain.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DCA1A30DCD000C8CADA /* Domain.m */; };
-		CF6D6DCE1A30DCD000C8CADA /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DCD1A30DCD000C8CADA /* Agent.m */; };
+		CF6D6DB91A306F7300C8CADA /* FreakType.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB81A306F7300C8CADA /* FreakType.m */; };
+		CF6D6DBC1A306F7400C8CADA /* Domain.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DBB1A306F7400C8CADA /* Domain.m */; };
+		CF6D6DBF1A306F7400C8CADA /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DBE1A306F7400C8CADA /* Agent.m */; };
+		CF6D6DC21A30813C00C8CADA /* FreakType+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */; };
+		CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -41,12 +43,16 @@
 		CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMapper.m; sourceTree = "<group>"; };
 		CF6D6DB41A30499700C8CADA /* UIImage+AgentAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AgentAdjust.h"; sourceTree = "<group>"; };
 		CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AgentAdjust.m"; sourceTree = "<group>"; };
-		CF6D6DC61A30DCCF00C8CADA /* FreakType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreakType.h; sourceTree = "<group>"; };
-		CF6D6DC71A30DCCF00C8CADA /* FreakType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreakType.m; sourceTree = "<group>"; };
-		CF6D6DC91A30DCD000C8CADA /* Domain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
-		CF6D6DCA1A30DCD000C8CADA /* Domain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Domain.m; sourceTree = "<group>"; };
-		CF6D6DCC1A30DCD000C8CADA /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
-		CF6D6DCD1A30DCD000C8CADA /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
+		CF6D6DB71A306F7300C8CADA /* FreakType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreakType.h; sourceTree = "<group>"; };
+		CF6D6DB81A306F7300C8CADA /* FreakType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreakType.m; sourceTree = "<group>"; };
+		CF6D6DBA1A306F7400C8CADA /* Domain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
+		CF6D6DBB1A306F7400C8CADA /* Domain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Domain.m; sourceTree = "<group>"; };
+		CF6D6DBD1A306F7400C8CADA /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		CF6D6DBE1A306F7400C8CADA /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
+		CF6D6DC01A30813C00C8CADA /* FreakType+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreakType+Model.h"; sourceTree = "<group>"; };
+		CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FreakType+Model.m"; sourceTree = "<group>"; };
+		CF6D6DC31A308F9F00C8CADA /* Domain+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Domain+Model.h"; sourceTree = "<group>"; };
+		CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Domain+Model.m"; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -157,15 +163,19 @@
 		CFF9EF351A2E3F8F008510EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CF6D6DCC1A30DCD000C8CADA /* Agent.h */,
-				CF6D6DCD1A30DCD000C8CADA /* Agent.m */,
+				CF6D6DBD1A306F7400C8CADA /* Agent.h */,
+				CF6D6DBE1A306F7400C8CADA /* Agent.m */,
 				CF6D6DAA1A2F3AC000C8CADA /* Agent+Model.h */,
 				CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */,
 				CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */,
-				CF6D6DC91A30DCD000C8CADA /* Domain.h */,
-				CF6D6DCA1A30DCD000C8CADA /* Domain.m */,
-				CF6D6DC61A30DCCF00C8CADA /* FreakType.h */,
-				CF6D6DC71A30DCCF00C8CADA /* FreakType.m */,
+				CF6D6DBA1A306F7400C8CADA /* Domain.h */,
+				CF6D6DBB1A306F7400C8CADA /* Domain.m */,
+				CF6D6DC31A308F9F00C8CADA /* Domain+Model.h */,
+				CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */,
+				CF6D6DB71A306F7300C8CADA /* FreakType.h */,
+				CF6D6DB81A306F7300C8CADA /* FreakType.m */,
+				CF6D6DC01A30813C00C8CADA /* FreakType+Model.h */,
+				CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -294,11 +304,13 @@
 				CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */,
 				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
 				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,
+				CF6D6DC21A30813C00C8CADA /* FreakType+Model.m in Sources */,
 				CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
-				CF6D6DCE1A30DCD000C8CADA /* Agent.m in Sources */,
-				CF6D6DCB1A30DCD000C8CADA /* Domain.m in Sources */,
-				CF6D6DC81A30DCCF00C8CADA /* FreakType.m in Sources */,
+				CF6D6DBF1A306F7400C8CADA /* Agent.m in Sources */,
+				CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */,
+				CF6D6DBC1A306F7400C8CADA /* Domain.m in Sources */,
+				CF6D6DB91A306F7300C8CADA /* FreakType.m in Sources */,
 				CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */,
 				CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */,
 				CF6D6DB61A30499700C8CADA /* UIImage+AgentAdjust.m in Sources */,
