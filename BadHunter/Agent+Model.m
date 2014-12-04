@@ -29,14 +29,39 @@ NSString *const agentPropertyPictureUUID = @"pictureUUID";
 #pragma mark - Custom getters & setters
 
 - (NSNumber *) appraisal {
+    NSNumber *appraisalValue;
+    if ([self primitiveValueForKey:agentPropertyAppraisal] == nil) {
+        [self updateAppraisalValue];
+    }
     [self willAccessValueForKey:agentPropertyAppraisal];
+    appraisalValue = [self primitiveValueForKey:agentPropertyAppraisal];
+    [self didAccessValueForKey:agentPropertyAppraisal];
+
+    return appraisalValue;
+}
+
+
+- (void) setDestructionPower:(NSNumber *)destructionPower {
+    [self willChangeValueForKey:agentPropertyDestructionPower];
+    [self setPrimitiveValue:destructionPower forKey:agentPropertyDestructionPower];
+    [self updateAppraisalValue];
+    [self didChangeValueForKey:agentPropertyDestructionPower];
+}
+
+
+- (void) setMotivation:(NSNumber *)motivation {
+    [self willChangeValueForKey:agentPropertyMotivation];
+    [self setPrimitiveValue:motivation forKey:agentPropertyMotivation];
+    [self updateAppraisalValue];
+    [self didChangeValueForKey:agentPropertyMotivation];
+}
+
+
+- (void) updateAppraisalValue {
     NSUInteger destructionPower = [self.destructionPower unsignedIntegerValue];
     NSUInteger motivation = [self.motivation unsignedIntegerValue];
     NSUInteger appraisal = (destructionPower + motivation) / 2;
-    [self didAccessValueForKey:agentPropertyAppraisal];
-    
-    return @(appraisal);
+    [self setPrimitiveValue:@(appraisal) forKey:agentPropertyAppraisal];
 }
-
 
 @end
