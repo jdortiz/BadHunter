@@ -21,6 +21,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
+@property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
+@property (weak, nonatomic) IBOutlet UITextField *domainsTextField;
 @property (weak, nonatomic) IBOutlet UILabel *appraisalLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *destructionPowerStepper;
 @property (weak, nonatomic) IBOutlet UILabel *destructionPowerLabel;
