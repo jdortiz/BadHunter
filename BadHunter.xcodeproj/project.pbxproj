@@ -15,6 +15,7 @@
 		CF6D6DBF1A306F7400C8CADA /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DBE1A306F7400C8CADA /* Agent.m */; };
 		CF6D6DC21A30813C00C8CADA /* FreakType+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */; };
 		CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */; };
+		CF6D6DD21A31286800C8CADA /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -23,7 +24,6 @@
 		CFB207CB1A2DD6A400BD3B27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB207C91A2DD6A400BD3B27 /* Main.storyboard */; };
 		CFB207CD1A2DD6A400BD3B27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */; };
 		CFB207D01A2DD6A400BD3B27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */; };
-		CFB207DC1A2DD6A400BD3B27 /* BadHunterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +53,7 @@
 		CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FreakType+Model.m"; sourceTree = "<group>"; };
 		CF6D6DC31A308F9F00C8CADA /* Domain+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Domain+Model.h"; sourceTree = "<group>"; };
 		CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Domain+Model.m"; sourceTree = "<group>"; };
+		CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		CFB207CF1A2DD6A400BD3B27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CFB207D51A2DD6A400BD3B27 /* BadHunterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHunterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207DA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadHunterTests.m; sourceTree = "<group>"; };
 		CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +146,8 @@
 		CFB207D81A2DD6A400BD3B27 /* BadHunterTests */ = {
 			isa = PBXGroup;
 			children = (
-				CFB207DB1A2DD6A400BD3B27 /* BadHunterTests.m */,
 				CFB207D91A2DD6A400BD3B27 /* Supporting Files */,
+				CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */,
 			);
 			path = BadHunterTests;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB207DC1A2DD6A400BD3B27 /* BadHunterTests.m in Sources */,
+				CF6D6DD21A31286800C8CADA /* AppDelegateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
