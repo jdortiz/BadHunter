@@ -16,6 +16,8 @@
 		CF6D6DC21A30813C00C8CADA /* FreakType+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC11A30813C00C8CADA /* FreakType+Model.m */; };
 		CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */; };
 		CF6D6DD21A31286800C8CADA /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */; };
+		CF6D6DD51A31CE3900C8CADA /* AgentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DD41A31CE3900C8CADA /* AgentTests.m */; };
+		CF6D6DD71A31D0CB00C8CADA /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -54,6 +56,7 @@
 		CF6D6DC31A308F9F00C8CADA /* Domain+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Domain+Model.h"; sourceTree = "<group>"; };
 		CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Domain+Model.m"; sourceTree = "<group>"; };
 		CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
+		CF6D6DD41A31CE3900C8CADA /* AgentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTests.m; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +104,22 @@
 			name = Auxiliary;
 			sourceTree = "<group>";
 		};
+		CF6D6DD31A31CDF900C8CADA /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		CF6D6DD61A31CE4E00C8CADA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF6D6DD41A31CE3900C8CADA /* AgentTests.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		CFB207AD1A2DD6A400BD3B27 = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +165,9 @@
 		CFB207D81A2DD6A400BD3B27 /* BadHunterTests */ = {
 			isa = PBXGroup;
 			children = (
+				CF6D6DD61A31CE4E00C8CADA /* Model */,
+				CF6D6DD31A31CDF900C8CADA /* App Delegate */,
 				CFB207D91A2DD6A400BD3B27 /* Supporting Files */,
-				CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */,
 			);
 			path = BadHunterTests;
 			sourceTree = "<group>";
@@ -322,6 +342,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF6D6DD21A31286800C8CADA /* AppDelegateTests.m in Sources */,
+				CF6D6DD51A31CE3900C8CADA /* AgentTests.m in Sources */,
+				CF6D6DD71A31D0CB00C8CADA /* BadHunter.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
