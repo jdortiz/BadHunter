@@ -47,19 +47,16 @@ static NSString *const segueEditAgent = @"EditAgent";
 
 
 - (void) requestVerification {
-    NSInvocationOperation *verificationOperation = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                                        selector:@selector(verifyDevice)
-                                                                                          object:nil];
-    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
-    backgroundQueue.name = @"Background verification";
-    [backgroundQueue addOperation:verificationOperation];
-}
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(backgroundQueue, ^{
+        __weak typeof(self)weakSelf = self;
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        NSLog(@"Requesting device verification");
+        [NSThread sleepForTimeInterval:10];
+        strongSelf.verifiedDevice = YES;
 
-
-- (void) verifyDevice {
-    NSLog(@"Requesting device verification");
-    [NSThread sleepForTimeInterval:10];
-    self.verifiedDevice = YES;
+    });
 }
 
 
