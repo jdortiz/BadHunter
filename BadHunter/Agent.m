@@ -2,7 +2,7 @@
 //  Agent.m
 //  BadHunter
 //
-//  Created by Jorge D. Ortiz Fuentes on 4/12/14.
+//  Created by Jorge D. Ortiz Fuentes on 8/12/14.
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @dynamic motivation;
 @dynamic name;
 @dynamic pictureUUID;
+@dynamic power;
 @dynamic category;
 @dynamic domains;
 

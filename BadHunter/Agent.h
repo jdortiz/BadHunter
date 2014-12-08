@@ -2,7 +2,7 @@
 //  Agent.h
 //  BadHunter
 //
-//  Created by Jorge D. Ortiz Fuentes on 4/12/14.
+//  Created by Jorge D. Ortiz Fuentes on 8/12/14.
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSNumber * motivation;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * pictureUUID;
+@property (nonatomic, retain) NSString * power;
 @property (nonatomic, retain) FreakType *category;
 @property (nonatomic, retain) NSSet *domains;
 @end
