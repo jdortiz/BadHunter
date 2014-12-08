@@ -42,9 +42,18 @@ static NSString *const segueEditAgent = @"EditAgent";
 - (void) viewWillAppear:(BOOL)animated {
     [self addObserver:self forKeyPath:@"verifiedDevice"
               options:0 context:NULL];
-    [self verifyDevice];
+    [self requestVerification];
 }
 
+
+- (void) requestVerification {
+    NSInvocationOperation *verificationOperation = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                                        selector:@selector(verifyDevice)
+                                                                                          object:nil];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
+    backgroundQueue.name = @"Background verification";
+    [backgroundQueue addOperation:verificationOperation];
+}
 
 
 - (void) verifyDevice {
