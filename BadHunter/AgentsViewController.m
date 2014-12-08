@@ -55,7 +55,6 @@ static NSString *const segueEditAgent = @"EditAgent";
         AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         Agent *agent = [self.fetchedResultsController objectAtIndexPath:selectedIndexPath];
-        agent.power = (selectedIndexPath.row % 2 == 0)? @"Intelligence": @"Strength";
         [self prepareAgentEditViewController:agentEditVC withAgent:agent];
     }
 }
