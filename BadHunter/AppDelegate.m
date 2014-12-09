@@ -16,12 +16,15 @@
 
 @interface AppDelegate ()
 
+@property (readonly, strong, nonatomic) NSManagedObjectContext *rootMOC;
+
 @end
 
 
 
 @implementation AppDelegate
 
+@synthesize rootMOC = _rootMOC;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize backgroundMOC = _backgroundMOC;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -146,26 +149,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (NSManagedObjectContext *) managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext == nil) {
-        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-        if (coordinator != nil) {
-            _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-
-            [self prepareUndoForContext:_managedObjectContext];
-        }
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _managedObjectContext.parentContext = self.rootMOC;
+        [self prepareUndoForContext:_managedObjectContext];
     }
 
     return _managedObjectContext;
 }
 
 
+- (NSManagedObjectContext *) rootMOC {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_rootMOC == nil) {
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator != nil) {
+            _rootMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            _rootMOC.persistentStoreCoordinator = coordinator;
+        }
+    }
+    
+    return _rootMOC;
+}
+
+
 - (NSManagedObjectContext *) backgroundMOC {
     if (_backgroundMOC == nil) {
         _backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-        if (coordinator) {
-            _backgroundMOC.persistentStoreCoordinator = coordinator;
-        }
+        _backgroundMOC.parentContext = self.managedObjectContext;
     }
     return _backgroundMOC;
 }
