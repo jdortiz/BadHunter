@@ -22,6 +22,12 @@
 
 @implementation AppDelegate
 
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize backgroundMOC = _backgroundMOC;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
 #pragma mark - Constants & Parameters
 
 static NSUInteger importedObjectsCount = 10000;
@@ -31,7 +37,7 @@ static NSUInteger importedObjectsCount = 10000;
 
 - (BOOL) application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self importDataInMOC:self.managedObjectContext];
+    [self importDataInMOC:self.backgroundMOC];
     [self prepareRootViewController];
     return YES;
 }
@@ -87,11 +93,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 
 #pragma mark - Core Data stack
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
 
 - (NSURL *) applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.powwau.BadHunter" in the application's documents directory.
@@ -155,6 +156,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     }
 
     return _managedObjectContext;
+}
+
+
+- (NSManagedObjectContext *) backgroundMOC {
+    if (_backgroundMOC == nil) {
+        _backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator) {
+            _backgroundMOC.persistentStoreCoordinator = coordinator;
+        }
+    }
+    return _backgroundMOC;
 }
 
 
