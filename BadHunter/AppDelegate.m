@@ -16,7 +16,7 @@
 
 @interface AppDelegate ()
 
-@property (strong, nonatomic) NSNotificationCenter *notificationCenter;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *rootMOC;
 
 @end
 
@@ -24,6 +24,7 @@
 
 @implementation AppDelegate
 
+@synthesize rootMOC = _rootMOC;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize backgroundMOC = _backgroundMOC;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -39,7 +40,6 @@ static NSUInteger importedObjectsCount = 10000;
 
 - (BOOL) application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self registerForChangesInMOCNotifications];
     [self importDataInMOC:self.backgroundMOC];
     [self prepareRootViewController];
     return YES;
@@ -75,23 +75,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
-    [self deregisterForChangesInMOCNotifications];
-}
-
-
-#pragma mark - Notifications
-
-- (void) registerForChangesInMOCNotifications {
-    [self.notificationCenter addObserver:self selector:@selector(mergeChangesSavedToContext:)
-                                    name:NSManagedObjectContextDidSaveNotification
-                                  object:self.backgroundMOC];
-}
-
-
-- (void) deregisterForChangesInMOCNotifications {
-    [self.notificationCenter removeObserver:self
-                                       name:NSManagedObjectContextDidSaveNotification
-                                     object:self.backgroundMOC];
 }
 
 
@@ -109,11 +92,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         }
         [moc save:NULL];
     }];
-}
-
-
-- (void) mergeChangesSavedToContext:(NSNotification *)notification {
-    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
 }
 
 
@@ -171,26 +149,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (NSManagedObjectContext *) managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext == nil) {
-        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-        if (coordinator != nil) {
-            _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-
-            [self prepareUndoForContext:_managedObjectContext];
-        }
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _managedObjectContext.parentContext = self.rootMOC;
+        [self prepareUndoForContext:_managedObjectContext];
     }
 
     return _managedObjectContext;
 }
 
 
+- (NSManagedObjectContext *) rootMOC {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_rootMOC == nil) {
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator != nil) {
+            _rootMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+            _rootMOC.persistentStoreCoordinator = coordinator;
+        }
+    }
+    
+    return _rootMOC;
+}
+
+
 - (NSManagedObjectContext *) backgroundMOC {
     if (_backgroundMOC == nil) {
         _backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
-        if (coordinator) {
-            _backgroundMOC.persistentStoreCoordinator = coordinator;
-        }
+        _backgroundMOC.parentContext = self.managedObjectContext;
     }
     return _backgroundMOC;
 }
@@ -216,16 +201,5 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         }
     }
 }
-
-
-#pragma mark - Lazy instantiation properties for dependency injection
-
-- (NSNotificationCenter *) notificationCenter {
-    if (_notificationCenter == nil) {
-        _notificationCenter = [NSNotificationCenter defaultCenter];
-    }
-    return _notificationCenter;
-}
-
 
 @end
