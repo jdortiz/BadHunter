@@ -6,61 +6,50 @@
 //  Copyright (c) 2014 PoWWaU. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "AgentsViewController.h"
+#import "AgentEditViewController.h"
 
-@interface MasterViewController ()
+
+@interface AgentsViewController ()
 
 @end
 
-@implementation MasterViewController
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
+@implementation AgentsViewController
+
+#pragma mark - Parameters & Constants
+
+static NSString *const segueCreateAgent = @"CreateAgent";
+
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-        
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-}
 
 #pragma mark - Segues
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:segueCreateAgent]) {
+        AgentEditViewController *detailVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
+        [self prepareAgentEditViewController:detailVC];
     }
 }
+
+
+- (void) prepareAgentEditViewController:(AgentEditViewController *)agentEditVC {
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    [self.managedObjectContext.undoManager beginUndoGrouping];
+    NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                                           inManagedObjectContext:self.managedObjectContext];
+    agentEditVC.agent = agent;
+    agentEditVC.delegate = self;
+}
+
 
 #pragma mark - Table View
 
@@ -101,7 +90,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[object valueForKey:@"name"] description];
 }
 
 #pragma mark - Fetched results controller
@@ -114,14 +103,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Agent" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -181,7 +170,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -196,14 +185,30 @@
     [self.tableView endUpdates];
 }
 
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
+
+#pragma mark - Agent edit view controller delegate
+
+- (void) dismissAgentEditViewController:(id)agentEditVC modifiedData:(BOOL)modifiedData {
+    [self.managedObjectContext.undoManager setActionName:@"new agent"];
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    if (modifiedData) {
+        [self saveContext];
+    } else {
+        [self.managedObjectContext.undoManager undo];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
- */
+
+
+- (void) saveContext {
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Couldn't save data: %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
 
 @end
