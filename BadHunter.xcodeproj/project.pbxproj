@@ -22,6 +22,7 @@
 		CF8B0E811A3607DA009E7BB4 /* Power+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E801A3607DA009E7BB4 /* Power+Model.m */; };
 		CF8B0E831A360B4E009E7BB4 /* Map1To2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E821A360B4E009E7BB4 /* Map1To2.xcmappingmodel */; };
 		CF8B0E861A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E851A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m */; };
+		CF8B0E891A3687C4009E7BB4 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E881A3687C4009E7BB4 /* Model.m */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -70,6 +71,8 @@
 		CF8B0E821A360B4E009E7BB4 /* Map1To2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Map1To2.xcmappingmodel; sourceTree = "<group>"; };
 		CF8B0E841A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentToAgentMigrationPolicy.h; sourceTree = "<group>"; };
 		CF8B0E851A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentToAgentMigrationPolicy.m; sourceTree = "<group>"; };
+		CF8B0E871A3687C4009E7BB4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		CF8B0E881A3687C4009E7BB4 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 		CFF9EF351A2E3F8F008510EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CF8B0E871A3687C4009E7BB4 /* Model.h */,
+				CF8B0E881A3687C4009E7BB4 /* Model.m */,
 				CF8B0E7C1A360736009E7BB4 /* Agent.h */,
 				CF8B0E7D1A360736009E7BB4 /* Agent.m */,
 				CF6D6DAA1A2F3AC000C8CADA /* Agent+Model.h */,
@@ -344,6 +349,7 @@
 				CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */,
 				CF8B0E811A3607DA009E7BB4 /* Power+Model.m in Sources */,
 				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
+				CF8B0E891A3687C4009E7BB4 /* Model.m in Sources */,
 				CF8B0E7B1A360709009E7BB4 /* Power.m in Sources */,
 				CF8B0E861A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m in Sources */,
 				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,

@@ -14,6 +14,8 @@
 
 @interface AgentsViewController ()
 
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSNotificationCenter *notificationCenter;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *verificationStatusButton;
 @property (assign, nonatomic) BOOL verifiedDevice;
 
@@ -35,7 +37,22 @@ static NSString *const segueEditAgent = @"EditAgent";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    [self registerModelObserver];
     [self displayControlledDomainsInTitle];
+}
+
+
+- (void) registerModelObserver {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(modelStatusChanged)
+                                    name:UIDocumentStateChangedNotification
+                                  object:self.model];
+}
+
+
+- (void) modelStatusChanged {
+    self.fetchedResultsController = nil;
+    [self.tableView reloadData];
 }
 
 
@@ -69,7 +86,7 @@ static NSString *const segueEditAgent = @"EditAgent";
 
 - (void) displayControlledDomainsInTitle {
     NSError *error;
-    NSUInteger controlledDomains = [self.managedObjectContext countForFetchRequest:[Domain fetchForControlledDomains]
+    NSUInteger controlledDomains = [self.model.managedObjectContext countForFetchRequest:[Domain fetchForControlledDomains]
                                                                              error:&error];
     self.title = [NSString stringWithFormat:@"Controlled domains: %lu", (unsigned long)controlledDomains];
 }
@@ -92,14 +109,14 @@ static NSString *const segueEditAgent = @"EditAgent";
 
 - (void) prepareAgentEditViewController:(AgentEditViewController *)agentEditVC
                               withAgent:(Agent *)agent {
-    [self.managedObjectContext.undoManager beginUndoGrouping];
+    [self.model.managedObjectContext.undoManager beginUndoGrouping];
     if (agent == nil) {
-        [self.managedObjectContext.undoManager setActionName:@"new agent"];
+        [self.model.managedObjectContext.undoManager setActionName:@"new agent"];
         NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
         agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                              inManagedObjectContext:self.managedObjectContext];
+                                              inManagedObjectContext:self.model.managedObjectContext];
     } else {
-        [self.managedObjectContext.undoManager setActionName:@"edit agent"];
+        [self.model.managedObjectContext.undoManager setActionName:@"edit agent"];
     }
     agentEditVC.agent = agent;
     agentEditVC.delegate = self;
@@ -179,7 +196,7 @@ static NSString *const segueEditAgent = @"EditAgent";
         NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
 
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Agent fetchForAllAgentsWithSortDescriptors:@[categorySortDescriptor, dpSortDescriptor, nameSortDescriptor]]
-                                                                        managedObjectContext:self.managedObjectContext
+                                                                        managedObjectContext:self.model.managedObjectContext
                                                                                                       sectionNameKeyPath:sectionName cacheName:@"Agents"];
         _fetchedResultsController.delegate = self;
         
@@ -252,11 +269,11 @@ static NSString *const segueEditAgent = @"EditAgent";
 #pragma mark - Agent edit view controller delegate
 
 - (void) dismissAgentEditViewController:(id)agentEditVC modifiedData:(BOOL)modifiedData {
-    [self.managedObjectContext.undoManager endUndoGrouping];
+    [self.model.managedObjectContext.undoManager endUndoGrouping];
     if (modifiedData) {
         [self saveContext];
     } else {
-        [self.managedObjectContext.undoManager undo];
+        [self.model.managedObjectContext.undoManager undo];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -265,7 +282,7 @@ static NSString *const segueEditAgent = @"EditAgent";
 
 - (void) saveContext {
     NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
+    if (![self.model.managedObjectContext save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Couldn't save data: %@, %@", error, [error userInfo]);
@@ -285,4 +302,15 @@ static NSString *const segueEditAgent = @"EditAgent";
         }
     }
 }
+
+#pragma mark - Notification center
+
+- (NSNotificationCenter *) notificationCenter {
+    if (_notificationCenter == nil) {
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+    }
+    
+    return _notificationCenter;
+}
+
 @end
