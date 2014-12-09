@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */; };
+		CF6D6DAF1A2F622500C8CADA /* Agent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DAE1A2F622500C8CADA /* Agent.m */; };
+		CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */; };
+		CF6D6DB61A30499700C8CADA /* UIImage+AgentAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -29,6 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF6D6DAA1A2F3AC000C8CADA /* Agent+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Agent+Model.h"; sourceTree = "<group>"; };
+		CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Agent+Model.m"; sourceTree = "<group>"; };
+		CF6D6DAD1A2F622500C8CADA /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		CF6D6DAE1A2F622500C8CADA /* Agent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agent.m; sourceTree = "<group>"; };
+		CF6D6DB01A2F696C00C8CADA /* ImageMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMapper.h; sourceTree = "<group>"; };
+		CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMapper.m; sourceTree = "<group>"; };
+		CF6D6DB41A30499700C8CADA /* UIImage+AgentAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AgentAdjust.h"; sourceTree = "<group>"; };
+		CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AgentAdjust.m"; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +78,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF6D6DB31A2F697A00C8CADA /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				CF6D6DB01A2F696C00C8CADA /* ImageMapper.h */,
+				CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */,
+				CF6D6DB41A30499700C8CADA /* UIImage+AgentAdjust.h */,
+				CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */,
+			);
+			name = Auxiliary;
+			sourceTree = "<group>";
+		};
 		CFB207AD1A2DD6A400BD3B27 = {
 			isa = PBXGroup;
 			children = (
@@ -87,17 +110,13 @@
 		CFB207B81A2DD6A400BD3B27 /* BadHunter */ = {
 			isa = PBXGroup;
 			children = (
-				CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */,
-				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
-				CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */,
-				CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */,
-				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
-				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
-				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
+				CFF9EF351A2E3F8F008510EF /* Model */,
+				CFF9EF361A2E3FA5008510EF /* App Delegate */,
+				CFF9EF371A2E3FB6008510EF /* View Controllers */,
+				CF6D6DB31A2F697A00C8CADA /* Auxiliary */,
 				CFB207C91A2DD6A400BD3B27 /* Main.storyboard */,
 				CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */,
 				CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */,
-				CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */,
 				CFB207B91A2DD6A400BD3B27 /* Supporting Files */,
 			);
 			path = BadHunter;
@@ -127,6 +146,39 @@
 				CFB207DA1A2DD6A400BD3B27 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFF9EF351A2E3F8F008510EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF6D6DAD1A2F622500C8CADA /* Agent.h */,
+				CF6D6DAE1A2F622500C8CADA /* Agent.m */,
+				CF6D6DAA1A2F3AC000C8CADA /* Agent+Model.h */,
+				CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */,
+				CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CFF9EF361A2E3FA5008510EF /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				CFB207BD1A2DD6A400BD3B27 /* AppDelegate.h */,
+				CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		CFF9EF371A2E3FB6008510EF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CFB207C31A2DD6A400BD3B27 /* AgentsViewController.h */,
+				CFB207C41A2DD6A400BD3B27 /* AgentsViewController.m */,
+				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
+				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
+				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,11 +281,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */,
 				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
 				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,
+				CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
 				CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */,
 				CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */,
+				CF6D6DB61A30499700C8CADA /* UIImage+AgentAdjust.m in Sources */,
+				CF6D6DAF1A2F622500C8CADA /* Agent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

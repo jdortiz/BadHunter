@@ -8,6 +8,7 @@
 
 #import "AgentsViewController.h"
 #import "AgentEditViewController.h"
+#import "Agent.h"
 
 
 @interface AgentsViewController ()
@@ -20,6 +21,7 @@
 #pragma mark - Parameters & Constants
 
 static NSString *const segueCreateAgent = @"CreateAgent";
+static NSString *const segueEditAgent = @"EditAgent";
 
 
 #pragma mark - Lifecycle
@@ -35,17 +37,27 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:segueCreateAgent]) {
-        AgentEditViewController *detailVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
-        [self prepareAgentEditViewController:detailVC];
+        AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
+        [self prepareAgentEditViewController:agentEditVC withAgent:nil];
+    } else if ([[segue identifier] isEqualToString:segueEditAgent]) {
+        AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
+        Agent *agent = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        [self prepareAgentEditViewController:agentEditVC withAgent:agent];
     }
 }
 
 
-- (void) prepareAgentEditViewController:(AgentEditViewController *)agentEditVC {
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+- (void) prepareAgentEditViewController:(AgentEditViewController *)agentEditVC
+                              withAgent:(Agent *)agent {
     [self.managedObjectContext.undoManager beginUndoGrouping];
-    NSManagedObject *agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                           inManagedObjectContext:self.managedObjectContext];
+    if (agent == nil) {
+        [self.managedObjectContext.undoManager setActionName:@"new agent"];
+        NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+        agent = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                              inManagedObjectContext:self.managedObjectContext];
+    } else {
+        [self.managedObjectContext.undoManager setActionName:@"edit agent"];
+    }
     agentEditVC.agent = agent;
     agentEditVC.delegate = self;
 }
@@ -88,10 +100,12 @@ static NSString *const segueCreateAgent = @"CreateAgent";
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
+
+- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Agent *agent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = agent.name;
 }
+
 
 #pragma mark - Fetched results controller
 
@@ -189,7 +203,6 @@ static NSString *const segueCreateAgent = @"CreateAgent";
 #pragma mark - Agent edit view controller delegate
 
 - (void) dismissAgentEditViewController:(id)agentEditVC modifiedData:(BOOL)modifiedData {
-    [self.managedObjectContext.undoManager setActionName:@"new agent"];
     [self.managedObjectContext.undoManager endUndoGrouping];
     if (modifiedData) {
         [self saveContext];
