@@ -31,7 +31,7 @@ static NSUInteger importedObjectsCount = 10000;
 
 - (BOOL) application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self importData];
+    [self importDataInMOC:self.managedObjectContext];
     [self prepareRootViewController];
     return YES;
 }
@@ -71,19 +71,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #pragma mark - Data importer
 
-- (void) importData {
-    __weak typeof(self)weakSelf = self;
-    [self.managedObjectContext performBlock:^{
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
+- (void) importDataInMOC:(NSManagedObjectContext *)moc {
+    [moc performBlock:^{
         for (NSUInteger i = 0; i < importedObjectsCount; i++) {
-            FreakType *freakType = [FreakType freakTypeInMOC:strongSelf.managedObjectContext
+            FreakType *freakType = [FreakType freakTypeInMOC:moc
                                                     withName:@"Monster"];
-            Agent *agent = [Agent agentInMOC:strongSelf.managedObjectContext
+            Agent *agent = [Agent agentInMOC:moc
                                     withName:[NSString stringWithFormat:@"Agent %lu",i]];
             agent.category = freakType;
             usleep(5000000/importedObjectsCount);
         }
-        [strongSelf.managedObjectContext save:NULL];
+        [moc save:NULL];
     }];
 }
 
