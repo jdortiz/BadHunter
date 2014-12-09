@@ -9,6 +9,7 @@
 #import "Agent.h"
 
 extern NSString *const agentPropertyAppraisal;
+extern NSString *const agentPropertyName;
 extern NSString *const agentPropertyDestructionPower;
 extern NSString *const agentPropertyMotivation;
 extern NSString *const agentPropertyPictureUUID;
@@ -18,6 +19,7 @@ extern NSString *const agentPropertyPictureUUID;
 
 + (NSFetchRequest *) fetchForAllAgents;
 + (NSFetchRequest *) fetchForAllAgentsWithPredicate:(NSPredicate *)predicate;
++ (NSFetchRequest *) fetchForAllAgentsWithSortDescriptors:(NSArray *)sortDescriptors;
 - (NSString *) generatePictureUUID;
 
 @end

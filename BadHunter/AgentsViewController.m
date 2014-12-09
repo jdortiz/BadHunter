@@ -9,6 +9,7 @@
 #import "AgentsViewController.h"
 #import "AgentEditViewController.h"
 #import "Agent+Model.h"
+#import "Domain+Model.h"
 
 
 @interface AgentsViewController ()
@@ -30,6 +31,17 @@ static NSString *const segueEditAgent = @"EditAgent";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    [self displayControlledDomainsInTitle];
+}
+
+
+#pragma mark - Display information
+
+- (void) displayControlledDomainsInTitle {
+    NSError *error;
+    NSUInteger controlledDomains = [self.managedObjectContext countForFetchRequest:[Domain fetchForControlledDomains]
+                                                                             error:&error];
+    self.title = [NSString stringWithFormat:@"Controlled domains: %lu", (unsigned long)controlledDomains];
 }
 
 
@@ -101,6 +113,13 @@ static NSString *const segueEditAgent = @"EditAgent";
 }
 
 
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *categoryName = [[self.fetchedResultsController sections][section] name];
+    NSNumber *dpAvg = [[[[self.fetchedResultsController sections] objectAtIndex:section] objects] valueForKeyPath:@"@avg.destructionPower"];
+    return [NSString stringWithFormat:@"%@ (%@)", categoryName, dpAvg];
+}
+
+
 - (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Agent *agent = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = agent.name;
@@ -111,14 +130,17 @@ static NSString *const segueEditAgent = @"EditAgent";
 
 - (NSFetchedResultsController *) fetchedResultsController {
     if (_fetchedResultsController == nil) {
+        static NSString *const sectionName = @"category.name";
         [NSFetchedResultsController deleteCacheWithName:@"Agents"];
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K < %@",
-                                  agentPropertyDestructionPower, @2];
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Agent fetchForAllAgentsWithPredicate:predicate]
+        NSSortDescriptor *categorySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:sectionName ascending:YES];
+        NSSortDescriptor *dpSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyDestructionPower ascending:YES];
+        NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:agentPropertyName ascending:YES];
+
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[Agent fetchForAllAgentsWithSortDescriptors:@[categorySortDescriptor, dpSortDescriptor, nameSortDescriptor]]
                                                                         managedObjectContext:self.managedObjectContext
-                                                                                                      sectionNameKeyPath:nil cacheName:@"Agents"];
+                                                                                                      sectionNameKeyPath:sectionName cacheName:@"Agents"];
         _fetchedResultsController.delegate = self;
         
         NSError *error = nil;
@@ -181,9 +203,9 @@ static NSString *const segueEditAgent = @"EditAgent";
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+    [self displayControlledDomainsInTitle];
 }
 
 

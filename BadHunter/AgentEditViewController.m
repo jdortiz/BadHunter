@@ -8,8 +8,8 @@
 
 #import "AgentEditViewController.h"
 #import "Agent+Model.h"
-#import "FreakType.h"
-#import "Domain.h"
+#import "FreakType+Model.h"
+#import "Domain+Model.h"
 #import "ImageMapper.h"
 #import "UIImage+AgentAdjust.h"
 
@@ -189,7 +189,47 @@ static const CGFloat pictureSide = 200.0;
 
 
 - (void) assignDataToAgent {
+    [self assignName];
+    [self assignCategory];
+    [self assignDomains];
+}
+
+
+- (void)assignName {
     self.agent.name = self.nameTextField.text;
+}
+
+
+- (void) assignCategory {
+    FreakType *freakType = nil;
+    NSString *name = self.categoryTextField.text;
+    if (name!= nil) {
+        freakType = [FreakType fetchInMOC:self.agent.managedObjectContext
+                                 withName:self.categoryTextField.text];
+        if (freakType == nil) {
+            freakType = [FreakType freakTypeInMOC:self.agent.managedObjectContext withName:name];
+        }
+    }
+    self.agent.category = freakType;
+}
+
+
+- (void) assignDomains {
+    NSString *domainsString = self.domainsTextField.text;
+    if (domainsString != nil) {
+        NSArray *domainNames = [domainsString componentsSeparatedByString:@","];
+        NSMutableSet *domains = [[NSMutableSet alloc] initWithCapacity:[domainNames count]];
+        Domain *domain;
+        for (NSString *domainName in domainNames) {
+            domain = [Domain fetchInMOC:self.agent.managedObjectContext
+                               withName:domainName];
+            if (domain == nil) {
+                domain = [Domain domainInMOC:self.agent.managedObjectContext withName:domainName];
+            }
+            [domains addObject:domain];
+        }
+        self.agent.domains = domains;
+    }
 }
 
 
@@ -362,16 +402,16 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     BOOL exists = YES;
     if (textField == self.categoryTextField) {
         NSString *category = self.categoryTextField.text;
-//        exists = ([FreakType fetchInMOC:self.agent.managedObjectContext
-//                               withName:category] != nil);
+        exists = ([FreakType fetchInMOC:self.agent.managedObjectContext
+                               withName:category] != nil);
         [self decorateTextField:textField withContents:@[category] values:@[@(exists)]];
     } else if (textField == self.domainsTextField) {
         NSString *domainsString = self.domainsTextField.text;
         NSArray *domains = [domainsString componentsSeparatedByString:@","];
         NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:[domains count]];
         for (NSString *domain in domains) {
-//            exists = ([Domain fetchInMOC:self.agent.managedObjectContext
-//                                withName:domain] != nil);
+            exists = ([Domain fetchInMOC:self.agent.managedObjectContext
+                                withName:domain] != nil);
             [values addObject:@(exists)];
             if (domain !=nil) exists = !exists;
         }
