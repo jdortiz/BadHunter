@@ -9,21 +9,40 @@
 #import "AppDelegate.h"
 #import "AgentEditViewController.h"
 #import "AgentsViewController.h"
+#import "Agent+Model.h"
+#import "FreakType+Model.h"
+
+
 
 @interface AppDelegate ()
 
 @end
 
+
+
 @implementation AppDelegate
 
+#pragma mark - Constants & Parameters
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+static NSUInteger importedObjectsCount = 10000;
+
+
+#pragma mark - Application lifecycle
+
+- (BOOL) application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self importDataInMOC:self.managedObjectContext];
+    [self prepareRootViewController];
+    return YES;
+}
+
+
+- (void) prepareRootViewController {
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AgentsViewController *controller = (AgentsViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
-    return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -48,6 +67,24 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+
+#pragma mark - Data importer
+
+- (void) importData {
+    FreakType *category = [FreakType freakTypeInMOC:self.managedObjectContext withName:@"Monster"];
+    if (category == nil) {
+        category = [FreakType freakTypeInMOC:self.managedObjectContext withName:@"Monster"];
+    }
+    for (NSUInteger i = 0; i < importedObjectsCount; i++) {
+        Agent *agent = [Agent agentInMOC:self.managedObjectContext
+                                withName:[NSString stringWithFormat:@"Agent %lu", i]];
+        agent.category = category;
+        usleep(5000000/importedObjectsCount);
+    }
+    [self.managedObjectContext save:NULL];
+}
+
 
 #pragma mark - Core Data stack
 
