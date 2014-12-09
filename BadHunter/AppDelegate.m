@@ -9,21 +9,46 @@
 #import "AppDelegate.h"
 #import "AgentEditViewController.h"
 #import "AgentsViewController.h"
+#import "Agent+Model.h"
+#import "FreakType+Model.h"
+
+
 
 @interface AppDelegate ()
 
 @end
 
+
+
 @implementation AppDelegate
 
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize backgroundMOC = _backgroundMOC;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+#pragma mark - Constants & Parameters
+
+static NSUInteger importedObjectsCount = 10000;
+
+
+#pragma mark - Application lifecycle
+
+- (BOOL) application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self importDataInMOC:self.backgroundMOC];
+    [self prepareRootViewController];
+    return YES;
+}
+
+
+- (void) prepareRootViewController {
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AgentsViewController *controller = (AgentsViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
-    return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -49,24 +74,38 @@
     [self saveContext];
 }
 
+
+#pragma mark - Data importer
+
+- (void) importDataInMOC:(NSManagedObjectContext *)moc {
+    [moc performBlock:^{
+        for (NSUInteger i = 0; i < importedObjectsCount; i++) {
+            FreakType *freakType = [FreakType freakTypeInMOC:moc
+                                                    withName:@"Monster"];
+            Agent *agent = [Agent agentInMOC:moc
+                                    withName:[NSString stringWithFormat:@"Agent %lu",i]];
+            agent.category = freakType;
+            usleep(5000000/importedObjectsCount);
+        }
+        [moc save:NULL];
+    }];
+}
+
+
 #pragma mark - Core Data stack
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
-- (NSURL *)applicationDocumentsDirectory {
+- (NSURL *) applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.powwau.BadHunter" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (NSManagedObjectModel *)managedObjectModel {
+
+- (NSManagedObjectModel *) managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
+    if (_managedObjectModel == nil) {
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"BadHunter" withExtension:@"momd"];
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"BadHunter" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
 
@@ -107,17 +146,28 @@
 - (NSManagedObjectContext *) managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext == nil) {
-        NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-        if (!coordinator) {
-            return nil;
-        }
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator != nil) {
+            _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
 
-        [self prepareUndoForContext:_managedObjectContext];
+            [self prepareUndoForContext:_managedObjectContext];
+        }
     }
 
     return _managedObjectContext;
+}
+
+
+- (NSManagedObjectContext *) backgroundMOC {
+    if (_backgroundMOC == nil) {
+        _backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+        if (coordinator) {
+            _backgroundMOC.persistentStoreCoordinator = coordinator;
+        }
+    }
+    return _backgroundMOC;
 }
 
 
