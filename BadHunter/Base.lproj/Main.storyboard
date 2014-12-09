@@ -46,9 +46,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="FnX-hN-Udk" kind="presentation" identifier="EditAgent" id="vL0-Qj-otX"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -58,12 +55,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="gde-Q2-S5G"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IL8-XW-IW2">
                             <connections>
                                 <segue destination="FnX-hN-Udk" kind="presentation" identifier="CreateAgent" id="YUA-eI-qmB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="verificationStatusButton" destination="gde-Q2-S5G" id="qAf-mf-pdq"/>
+                        <segue destination="FnX-hN-Udk" kind="presentation" identifier="EditAgent" id="JbF-uj-Aan"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,37 +84,37 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appraisal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-1r-OEq">
-                                <rect key="frame" x="263" y="218" width="74.5" height="20.5"/>
+                                <rect key="frame" x="263" y="218" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6U-49-FGH">
-                                <rect key="frame" x="36" y="323.5" width="80.5" height="20.5"/>
+                                <rect key="frame" x="36" y="323" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destruction Power" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPx-vN-C1l">
-                                <rect key="frame" x="36" y="258.5" width="142" height="20.5"/>
+                                <rect key="frame" x="36" y="258" width="142" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DPLevel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iA7-Vl-HjU">
-                                <rect key="frame" x="138" y="291.5" width="63.5" height="20.5"/>
+                                <rect key="frame" x="138" y="291" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="DcC-tV-tVu">
-                                <rect key="frame" x="36" y="286.5" width="94" height="29"/>
+                                <rect key="frame" x="36" y="286" width="94" height="29"/>
                                 <connections>
                                     <action selector="changeDestructionPower:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="aVV-Zd-0WS"/>
                                 </connections>
                             </stepper>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="fUs-iK-8pB">
-                                <rect key="frame" x="36" y="351.5" width="94" height="29"/>
+                                <rect key="frame" x="36" y="352" width="94" height="29"/>
                                 <connections>
                                     <action selector="changeMotivation:" destination="Ah7-4n-0Wa" eventType="valueChanged" id="nUg-Tj-Sc3"/>
                                 </connections>
@@ -126,7 +128,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8y3-LT-Lly">
-                                <rect key="frame" x="138" y="356.5" width="80.5" height="20.5"/>
+                                <rect key="frame" x="138" y="356" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -250,6 +252,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vL0-Qj-otX"/>
+        <segue reference="JbF-uj-Aan"/>
     </inferredMetricsTieBreakers>
 </document>
