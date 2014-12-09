@@ -8,6 +8,8 @@
 
 #import "AgentEditViewController.h"
 #import "Agent+Model.h"
+#import "FreakType.h"
+#import "Domain.h"
 #import "ImageMapper.h"
 #import "UIImage+AgentAdjust.h"
 
@@ -63,6 +65,8 @@ static const CGFloat pictureSide = 200.0;
         [self initializeMotivationViews];
         [self initializeAppraisalView];
         [self initializePictureView];
+        [self initializeCategoryTextField];
+        [self initializeDomainsTextField];
     }
 }
 
@@ -100,6 +104,26 @@ static const CGFloat pictureSide = 200.0;
 - (void) initializePictureView {
     [self loadAgentPicture];
     [self displayAgentPicture];
+}
+
+
+- (void) initializeCategoryTextField {
+    if (self.agent.category != nil) {
+        // if it is read from the data, it exists.
+        [self decorateTextField:self.categoryTextField withContents:@[self.agent.category.name] values:@[@YES]];
+    }
+}
+
+
+- (void) initializeDomainsTextField {
+    if ([self.agent.domains count] > 0) {
+        NSArray *contents = [[self.agent.domains valueForKey:@"name"] allObjects];
+        NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:[contents count]];
+        for (NSUInteger i = 0; i < [contents count]; i++) {
+            [values addObject:@(YES)];
+        }
+        [self decorateTextField:self.domainsTextField withContents:contents values:values];
+    }
 }
 
 
@@ -318,6 +342,58 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
 
     return shouldReturn;
+}
+
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.categoryTextField || textField == self.domainsTextField) {
+        [self removeDecorationOfTextInTextField:textField];
+    }
+}
+
+
+- (void) removeDecorationOfTextInTextField:(UITextField *)textField {
+    textField.attributedText = [[NSAttributedString alloc] initWithString:textField.text
+                                                               attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+}
+
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    BOOL exists = YES;
+    if (textField == self.categoryTextField) {
+        NSString *category = self.categoryTextField.text;
+//        exists = ([FreakType fetchInMOC:self.agent.managedObjectContext
+//                               withName:category] != nil);
+        [self decorateTextField:textField withContents:@[category] values:@[@(exists)]];
+    } else if (textField == self.domainsTextField) {
+        NSString *domainsString = self.domainsTextField.text;
+        NSArray *domains = [domainsString componentsSeparatedByString:@","];
+        NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:[domains count]];
+        for (NSString *domain in domains) {
+//            exists = ([Domain fetchInMOC:self.agent.managedObjectContext
+//                                withName:domain] != nil);
+            [values addObject:@(exists)];
+            if (domain !=nil) exists = !exists;
+        }
+        [self decorateTextField:textField withContents:domains values:values];
+    }
+}
+
+
+- (void) decorateTextField:(UITextField *)textField withContents:(NSArray *)contents
+                    values:(NSArray *)values {
+    NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] init];
+    for (NSUInteger i = 0; i < [contents count]; i++) {
+        BOOL exists = [[values objectAtIndex:i] boolValue];
+        NSString *substring = [contents objectAtIndex:i];
+        UIColor *decorationColor = (exists)?[UIColor greenColor]:[UIColor redColor];
+        NSAttributedString *attributedSubstring = [[NSAttributedString alloc] initWithString:substring attributes:@{NSForegroundColorAttributeName: decorationColor}];
+        [coloredString appendAttributedString:attributedSubstring];
+        if (i < ([contents count] - 1)) {
+            [coloredString appendAttributedString:[[NSAttributedString alloc] initWithString:@","]];
+        }
+    }
+    textField.attributedText = coloredString;
 }
 
 @end
