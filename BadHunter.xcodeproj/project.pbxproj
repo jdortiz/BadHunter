@@ -57,6 +57,7 @@
 		CF6D6DC41A308F9F00C8CADA /* Domain+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Domain+Model.m"; sourceTree = "<group>"; };
 		CF6D6DD11A31286800C8CADA /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
 		CF6D6DD41A31CE3900C8CADA /* AgentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTests.m; sourceTree = "<group>"; };
+		CF8B0E741A35DB1D009E7BB4 /* BadHunter 1.1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BadHunter 1.1.0.xcdatamodel"; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -543,9 +544,10 @@
 		CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CF8B0E741A35DB1D009E7BB4 /* BadHunter 1.1.0.xcdatamodel */,
 				CFB207C11A2DD6A400BD3B27 /* BadHunter.xcdatamodel */,
 			);
-			currentVersion = CFB207C11A2DD6A400BD3B27 /* BadHunter.xcdatamodel */;
+			currentVersion = CF8B0E741A35DB1D009E7BB4 /* BadHunter 1.1.0.xcdatamodel */;
 			path = BadHunter.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
