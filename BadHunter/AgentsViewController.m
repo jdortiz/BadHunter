@@ -66,13 +66,12 @@ static NSString *const segueEditAgent = @"EditAgent";
 - (void) requestVerification {
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
+    __weak typeof(self)weakSelf = self;
     dispatch_async(backgroundQueue, ^{
-        __weak typeof(self)weakSelf = self;
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         NSLog(@"Requesting device verification");
         [NSThread sleepForTimeInterval:10];
         strongSelf.verifiedDevice = YES;
-
     });
 }
 
