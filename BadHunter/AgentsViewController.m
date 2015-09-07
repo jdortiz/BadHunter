@@ -16,8 +16,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSNotificationCenter *notificationCenter;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *verificationStatusButton;
-@property (assign, nonatomic) BOOL verifiedDevice;
 
 @end
 
@@ -53,31 +51,6 @@ static NSString *const segueEditAgent = @"EditAgent";
 - (void) modelStatusChanged {
     self.fetchedResultsController = nil;
     [self.tableView reloadData];
-}
-
-
-- (void) viewWillAppear:(BOOL)animated {
-    [self addObserver:self forKeyPath:@"verifiedDevice"
-              options:0 context:NULL];
-    [self requestVerification];
-}
-
-
-- (void) requestVerification {
-    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(backgroundQueue, ^{
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        NSLog(@"Requesting device verification");
-        [NSThread sleepForTimeInterval:10];
-        strongSelf.verifiedDevice = YES;
-    });
-}
-
-
-- (void) viewDidDisappear:(BOOL)animated {
-    [self removeObserver:self forKeyPath:@"verifiedDevice"];
 }
 
 
@@ -164,15 +137,6 @@ static NSString *const segueEditAgent = @"EditAgent";
     NSString *categoryName = [[self.fetchedResultsController sections][section] name];
     NSNumber *dpAvg = [[[[self.fetchedResultsController sections] objectAtIndex:section] objects] valueForKeyPath:@"@avg.destructionPower"];
     return [NSString stringWithFormat:@"%@ (%@)", categoryName, dpAvg];
-}
-
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.verifiedDevice) {
-        [self performSegueWithIdentifier:segueEditAgent sender:self];
-    } else {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
 }
 
 
@@ -289,18 +253,6 @@ static NSString *const segueEditAgent = @"EditAgent";
     }
 }
 
-
-#pragma mark - Observers
-
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"verifiedDevice"]) {
-        if (self.verifiedDevice) {
-            self.verificationStatusButton.tintColor = [UIColor greenColor];
-        } else {
-            self.verificationStatusButton.tintColor = [UIColor redColor];
-        }
-    }
-}
 
 #pragma mark - Notification center
 

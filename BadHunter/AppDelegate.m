@@ -37,13 +37,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void) initializeModel {
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self.model.fileURL path]]) {
         // Create the document if it doesn't exist.
-        __weak typeof(self)weakSelf = self;
+//        __weak typeof(self)weakSelf = self;
         [self.model saveToURL:self.model.fileURL
              forSaveOperation:UIDocumentSaveForCreating
             completionHandler:^(BOOL success) {
                 if (success) {
-                    __strong __typeof(weakSelf)strongSelf = weakSelf;
-                    [strongSelf.model importData];
+//                    __strong __typeof(weakSelf)strongSelf = weakSelf;
+//                    [strongSelf.model importData];
                 }
             }];
     } else {

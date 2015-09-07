@@ -32,7 +32,7 @@ static NSUInteger importedObjectsCount = 10000;
             FreakType *freakType = [FreakType freakTypeInMOC:moc
                                                     withName:@"Monster"];
             Agent *agent = [Agent agentInMOC:moc
-                                    withName:[NSString stringWithFormat:@"Agent %lu",i]];
+                                    withName:[NSString stringWithFormat:@"Agent %lu",(unsigned long)i]];
             agent.category = freakType;
             usleep(5000000/importedObjectsCount);
         }
