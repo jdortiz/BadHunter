@@ -34,6 +34,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hzn-Xg-KEe">
                                 <rect key="frame" x="199" y="28" width="202" height="204"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="99" y="28" width="202" height="204"/>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BadHunter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-p5-XAw">
                                 <rect key="frame" x="16" y="252" width="85" height="20.5"/>
@@ -46,28 +49,40 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="348" y="251" width="36" height="20.5"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-1L-TC4">
-                                <rect key="frame" x="16" y="327" width="1175.5" height="20.5"/>
-                                <string key="text">Special thanks to: Gru, Kingpin, Godzilla, Alien, Dr. Octopus, King Kong, Predator, el Macho, and Randall Boggs and many others that I forgot to mention.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-1L-TC4">
+                                <rect key="frame" x="16" y="327" width="568" height="122"/>
+                                <string key="text">Special thanks to: Darth Vader, The Kurgan,  Terminator, Freddy Krueger, Dr. Hannibal Lecter, Norman Bates, Dracula, the Jocker, Lord Voldemort, Jack Torrance, Pinhead, Imhotep, Saruman, Ghostface, Chucky, Emperor Palpatine, Agent Smith, Gru, Kinkgpin, Godzilla, Alien, Dr. Octopus, King Kong, Predator, el Macho, and Randall Boggs and many others that I forgot to mention.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="16" y="312" width="368" height="79.5"/>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyr-CO-zAY">
-                                <rect key="frame" x="285" y="597.5" width="30" height="30"/>
+                                <rect key="frame" x="285" y="570" width="30" height="30"/>
                                 <state key="normal" title="OK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="185" y="400" width="30" height="0.0"/>
+                                </variation>
                                 <connections>
                                     <segue destination="UU1-n1-PvC" kind="unwind" unwindAction="dismissCredits:" id="i9Z-rE-CKd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© Copyright MaloSA, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-Nd-ZHi">
-                                <rect key="frame" x="278" y="292" width="149.5" height="14.5"/>
+                                <rect key="frame" x="225.5" y="292" width="149.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="178" y="292" width="149.5" height="0.0"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,12 +92,15 @@
                             <constraint firstItem="5Ay-p5-XAw" firstAttribute="leading" secondItem="ya3-B4-eje" secondAttribute="leadingMargin" id="Ckb-hL-5Fx"/>
                             <constraint firstAttribute="centerX" secondItem="hzn-Xg-KEe" secondAttribute="centerX" id="Dam-gt-ROF"/>
                             <constraint firstAttribute="centerX" secondItem="hyr-CO-zAY" secondAttribute="centerX" id="ENe-dl-fxc"/>
+                            <constraint firstItem="hyr-CO-zAY" firstAttribute="bottom" secondItem="Vls-k0-sdK" secondAttribute="top" id="Jo3-jz-1U0"/>
                             <constraint firstItem="5Ay-p5-XAw" firstAttribute="top" secondItem="hzn-Xg-KEe" secondAttribute="bottom" constant="20" id="NTx-dg-8dd"/>
                             <constraint firstItem="HqK-Nd-ZHi" firstAttribute="top" secondItem="5Ay-p5-XAw" secondAttribute="bottom" constant="20" id="O4g-AF-HJe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bJW-ZQ-ta8" secondAttribute="trailing" id="OiW-Cw-Xa1"/>
-                            <constraint firstItem="hyr-CO-zAY" firstAttribute="top" secondItem="JrE-1L-TC4" secondAttribute="bottom" constant="250" id="TU6-ei-Ygi"/>
+                            <constraint firstItem="hyr-CO-zAY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JrE-1L-TC4" secondAttribute="bottom" constant="8" symbolic="YES" id="ePC-Nf-wvg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JrE-1L-TC4" secondAttribute="trailing" id="ghC-sX-ejh"/>
+                            <constraint firstItem="hyr-CO-zAY" firstAttribute="bottom" secondItem="Vls-k0-sdK" secondAttribute="bottom" id="mUE-Ym-n3c"/>
                             <constraint firstItem="5Ay-p5-XAw" firstAttribute="baseline" secondItem="bJW-ZQ-ta8" secondAttribute="baseline" constant="0.5" id="wiF-vI-V6v"/>
-                            <constraint firstAttribute="centerX" secondItem="HqK-Nd-ZHi" secondAttribute="centerX" constant="-53" id="xUZ-Bf-bo9"/>
+                            <constraint firstAttribute="centerX" secondItem="HqK-Nd-ZHi" secondAttribute="centerX" id="xUZ-Bf-bo9"/>
                             <constraint firstItem="JrE-1L-TC4" firstAttribute="top" secondItem="HqK-Nd-ZHi" secondAttribute="bottom" constant="20" id="y27-xT-vts"/>
                         </constraints>
                     </view>
