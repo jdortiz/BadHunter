@@ -254,6 +254,13 @@ static NSString *const segueEditAgent = @"EditAgent";
 }
 
 
+#pragma mark - Unwind Credits View Controller
+
+- (IBAction) dismissCredits:(UIStoryboardSegue *)sender {
+    
+}
+
+
 #pragma mark - Notification center
 
 - (NSNotificationCenter *) notificationCenter {
