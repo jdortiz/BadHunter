@@ -36,29 +36,31 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hzn-Xg-KEe">
                                 <rect key="frame" x="199" y="28" width="202" height="204"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="1cH-AH-cPt"/>
                                     <constraint firstAttribute="width" secondItem="hzn-Xg-KEe" secondAttribute="height" multiplier="101:102" id="9T7-qk-PuP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="xYI-Fh-uil"/>
                                 </constraints>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="16" y="28" width="202" height="204"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="BadHunter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-p5-XAw">
-                                <rect key="frame" x="16" y="252" width="524" height="20.5"/>
+                                <rect key="frame" x="16" y="252" width="525.5" height="19.5"/>
                                 <color key="backgroundColor" red="0.77254901960784317" green="0.0" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="v.1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJW-ZQ-ta8">
-                                <rect key="frame" x="548" y="251" width="36" height="20.5"/>
+                                <rect key="frame" x="549.5" y="251" width="34.5" height="19.5"/>
                                 <color key="backgroundColor" red="0.77254901960784317" green="0.0" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="© Copyright MaloSA, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-Nd-ZHi">
-                                <rect key="frame" x="225" y="292" width="149.5" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <rect key="frame" x="225" y="291" width="149.5" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
@@ -66,9 +68,9 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-1L-TC4">
-                                <rect key="frame" x="16" y="327" width="568" height="122"/>
+                                <rect key="frame" x="16" y="326" width="568" height="124.5"/>
                                 <string key="text">Special thanks to: Darth Vader, The Kurgan,  Terminator, Freddy Krueger, Dr. Hannibal Lecter, Norman Bates, Dracula, the Jocker, Lord Voldemort, Jack Torrance, Pinhead, Imhotep, Saruman, Ghostface, Chucky, Emperor Palpatine, Agent Smith, Gru, Kinkgpin, Godzilla, Alien, Dr. Octopus, King Kong, Predator, el Macho, and Randall Boggs and many others that I forgot to mention.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
@@ -76,7 +78,8 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyr-CO-zAY">
-                                <rect key="frame" x="285" y="570" width="30" height="30"/>
+                                <rect key="frame" x="285" y="568" width="30" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="OK">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
