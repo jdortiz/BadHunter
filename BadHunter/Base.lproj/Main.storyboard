@@ -364,6 +364,7 @@
                         <outlet property="motivationLabel" destination="8y3-LT-Lly" id="oQS-Yq-EdZ"/>
                         <outlet property="motivationStepper" destination="fUs-iK-8pB" id="HK1-hM-R1y"/>
                         <outlet property="nameTextField" destination="d8T-t2-Ohn" id="EwU-mi-vFf"/>
+                        <outlet property="scrollView" destination="rFi-XY-cQm" id="vPl-Z5-mLO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
