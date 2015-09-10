@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-148" y="64"/>
         </scene>
-        <!--View Controller-->
+        <!--Credits View Controller-->
         <scene sceneID="r5j-Zw-d9k">
             <objects>
-                <viewController id="qma-f4-5Te" sceneMemberID="viewController">
+                <viewController id="qma-f4-5Te" customClass="CreditsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oHd-7V-FU1"/>
                         <viewControllerLayoutGuide type="bottom" id="Vls-k0-sdK"/>
@@ -146,6 +146,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="iconImageView" destination="hzn-Xg-KEe" id="1k1-bz-KKA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AMJ-xY-fNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UU1-n1-PvC" userLabel="Exit" sceneMemberID="exit"/>

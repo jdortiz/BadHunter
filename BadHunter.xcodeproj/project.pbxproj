@@ -32,6 +32,7 @@
 		CFB207CD1A2DD6A400BD3B27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */; };
 		CFB207D01A2DD6A400BD3B27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */; };
 		CFFA1BE01BA1351000C0CB8A /* AgentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */; };
+		CFFA1BE31BA1737500C0CB8A /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA1BE21BA1737500C0CB8A /* CreditsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewControllerDelegate.h; sourceTree = "<group>"; };
 		CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentTableViewCell.h; sourceTree = "<group>"; };
 		CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTableViewCell.m; sourceTree = "<group>"; };
+		CFFA1BE11BA1737500C0CB8A /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		CFFA1BE21BA1737500C0CB8A /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,8 @@
 				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
 				CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */,
 				CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */,
+				CFFA1BE11BA1737500C0CB8A /* CreditsViewController.h */,
+				CFFA1BE21BA1737500C0CB8A /* CreditsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				CFFA1BE01BA1351000C0CB8A /* AgentTableViewCell.m in Sources */,
 				CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
+				CFFA1BE31BA1737500C0CB8A /* CreditsViewController.m in Sources */,
 				CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */,
 				CF6D6DBC1A306F7400C8CADA /* Domain.m in Sources */,
 				CF6D6DB91A306F7300C8CADA /* FreakType.m in Sources */,
