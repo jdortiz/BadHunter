@@ -69,7 +69,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-1L-TC4">
                                 <rect key="frame" x="16" y="592" width="568" height="0.0"/>
-                                <string key="text">Special thanks to: Darth Vader, The Kurgan,  Terminator, Freddy Krueger, Dr. Hannibal Lecter, Norman Bates, Dracula, the Jocker, Lord Voldemort, Jack Torrance, Pinhead, Imhotep, Saruman, Ghostface, Chucky, Emperor Palpatine, Agent Smith, Gru, Kinkgpin, Godzilla, Alien, Dr. Octopus, King Kong, Predator, el Macho, and Randall Boggs and many others that I forgot to mention.</string>
+                                <string key="text">Special thanks to: Darth Vader, The Kurgan,  Terminator, Freddy Krueger, Dr. Hannibal Lecter, Norman Bates, Dracula, the Jocker, Lord Voldemort, Jack Torrance, Pinhead, Imhotep, Saruman, Ghostface, Chucky, Emperor Palpatine, Agent Smith, Gru, Kingpin, Godzilla, Alien, Dr. Octopus, King Kong, Predator, el Macho, and Randall Boggs and many others that I forgot to mention.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
