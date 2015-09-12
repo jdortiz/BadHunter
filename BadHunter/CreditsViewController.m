@@ -13,6 +13,8 @@
 @interface CreditsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *initialVerticalConstraintCredits;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *finalVerticalConstraintCredits;
 
 @end
 
@@ -29,21 +31,22 @@ static NSTimeInterval iconAnimationDuration = 0.5;
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.iconImageView.alpha = 0.0;
-//    self.iconImageView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-//    self.iconImageView.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(M_PI), 0.1, 0.1);
     self.iconImageView.transform = CGAffineTransformScale(CGAffineTransformRotate(CGAffineTransformMakeTranslation(-100.0, -100), M_PI), 0.1, 0.1);
-//    self.iconImageView.transform = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeScale(0.1, 0.1), M_PI), -100.0, -100.0);
 }
 
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.view layoutIfNeeded];
     if (animated) {
         [UIView animateWithDuration:iconAnimationDuration delay:0.0
              usingSpringWithDamping:1 initialSpringVelocity:0.1
                             options:0 animations:^{
                                 self.iconImageView.alpha = 1.0;
                                 self.iconImageView.transform = CGAffineTransformIdentity;
+                                self.initialVerticalConstraintCredits.priority = UILayoutPriorityDefaultHigh - 5;
+                                self.finalVerticalConstraintCredits.priority = UILayoutPriorityDefaultHigh + 5;
+                                [self.view layoutIfNeeded];
                             } completion:nil];
     }
 }
