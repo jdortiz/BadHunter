@@ -73,7 +73,21 @@ static const NSTimeInterval duration = 0.4;
 - (void) animateTransitionBackwardWithContext:(id<UIViewControllerContextTransitioning>)context
                            fromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController
                                      fromView:(UIView *)fromView toView:(UIView *)toView {
-
+    UIView *containerView = [context containerView];
+    toView.frame = [context finalFrameForViewController:toViewController];
+    if ([context isAnimated]) {
+        CGRect endFrame = CGRectMake(0.0, -containerView.frame.size.height, containerView.frame.size.width, containerView.frame.size.height);
+        [containerView insertSubview:toView belowSubview:fromView];
+        [UIView animateWithDuration:duration delay:0.0
+             usingSpringWithDamping:1.0 initialSpringVelocity:0.1
+                            options:0 animations:^{
+                                fromView.frame = endFrame;
+                            } completion:^(BOOL finished) {
+                                [context completeTransition:YES];
+                            }];
+    } else {
+        [containerView addSubview:toView];
+    }
 }
 
 
