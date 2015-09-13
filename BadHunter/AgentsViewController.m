@@ -79,6 +79,7 @@ static CGFloat estimatedHeight = 88;
 #pragma mark - Segues
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ((UIViewController *)segue.destinationViewController).transitioningDelegate = self;
     if ([segue.identifier isEqualToString:segueCreateAgent]) {
         AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
         [self prepareAgentEditViewController:agentEditVC withAgent:nil];
@@ -87,8 +88,6 @@ static CGFloat estimatedHeight = 88;
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         Agent *agent = [self.fetchedResultsController objectAtIndexPath:selectedIndexPath];
         [self prepareAgentEditViewController:agentEditVC withAgent:agent];
-    } else if ([segue.identifier isEqualToString:segueShowCredits]) {
-        ((UIViewController *)segue.destinationViewController).transitioningDelegate = self;
     }
 }
 
