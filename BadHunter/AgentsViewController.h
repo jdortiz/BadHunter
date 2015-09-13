@@ -13,8 +13,8 @@
 #import "Model.h"
 
 
-@interface AgentsViewController : UITableViewController <NSFetchedResultsControllerDelegate,
-AgentEditViewControllerDelegate>
+@interface AgentsViewController : UITableViewController <UIViewControllerTransitioningDelegate,
+NSFetchedResultsControllerDelegate, AgentEditViewControllerDelegate>
 
 //@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Model *model;
