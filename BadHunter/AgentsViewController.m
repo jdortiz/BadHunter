@@ -10,12 +10,15 @@
 #import "AgentEditViewController.h"
 #import "Agent+Model.h"
 #import "Domain+Model.h"
+#import "ImageMapper.h"
+#import "AgentTableViewCell.h"
 
 
 @interface AgentsViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSNotificationCenter *notificationCenter;
+@property (strong, nonatomic) ImageMapper *imageMapper;
 
 @end
 
@@ -27,7 +30,7 @@
 
 static NSString *const segueCreateAgent = @"CreateAgent";
 static NSString *const segueEditAgent = @"EditAgent";
-
+static CGFloat estimatedHeight = 88;
 
 #pragma mark - Lifecycle
 
@@ -36,7 +39,14 @@ static NSString *const segueEditAgent = @"EditAgent";
     // Do any additional setup after loading the view, typically from a nib.
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     [self registerModelObserver];
+    [self setTableViewForDynamicHeights];
     [self displayControlledDomainsInTitle];
+}
+
+
+- (void)setTableViewForDynamicHeights {
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = estimatedHeight;
 }
 
 
@@ -107,7 +117,7 @@ static NSString *const segueEditAgent = @"EditAgent";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    AgentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -140,9 +150,29 @@ static NSString *const segueEditAgent = @"EditAgent";
 }
 
 
-- (void) configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void) configureCell:(AgentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Agent *agent = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = agent.name;
+    [cell displayPicture:[self.imageMapper retrieveImageWithUUID:agent.pictureUUID]];
+
+    [cell displayName:agent.name];
+    [cell displayAppraisal:agent.appraisal];
+    NSInteger randomDescr = indexPath.row % 3;
+    NSString *agentDescription;
+    switch (randomDescr) {
+        case 0:
+            agentDescription = @"This is an agent that everybody would like to hire.";
+            break;
+        case 1:
+            agentDescription = @"This is an agent that we might consider to hire. It may be very valuable in field operations.";
+            break;
+        case 2:
+            agentDescription = @"Don't ever hire an agent like this one it is very dangerous. It can be lethal not only to our enemies, but also to us. You have been warned. I will say that I told you so.";
+            break;
+            
+        default:
+            break;
+    }
+    [cell displayDescription:agentDescription];
 }
 
 
@@ -254,7 +284,23 @@ static NSString *const segueEditAgent = @"EditAgent";
 }
 
 
-#pragma mark - Notification center
+#pragma mark - Unwind Credits View Controller
+
+- (IBAction) dismissCredits:(UIStoryboardSegue *)sender {
+    
+}
+
+
+
+#pragma mark - Lazy instantiantion for dependency injection
+
+- (ImageMapper *) imageMapper {
+    if (_imageMapper == nil) {
+        _imageMapper = [[ImageMapper alloc] init];
+    }
+    return _imageMapper;
+}
+
 
 - (NSNotificationCenter *) notificationCenter {
     if (_notificationCenter == nil) {

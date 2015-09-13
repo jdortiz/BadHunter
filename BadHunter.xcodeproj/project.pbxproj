@@ -31,6 +31,7 @@
 		CFB207CB1A2DD6A400BD3B27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB207C91A2DD6A400BD3B27 /* Main.storyboard */; };
 		CFB207CD1A2DD6A400BD3B27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */; };
 		CFB207D01A2DD6A400BD3B27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFB207CE1A2DD6A400BD3B27 /* LaunchScreen.xib */; };
+		CFFA1BE01BA1351000C0CB8A /* AgentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		CFB207D51A2DD6A400BD3B27 /* BadHunterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadHunterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207DA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgentEditViewControllerDelegate.h; sourceTree = "<group>"; };
+		CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentTableViewCell.h; sourceTree = "<group>"; };
+		CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
 				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
 				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
+				CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */,
+				CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				CF8B0E861A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m in Sources */,
 				CFB207C51A2DD6A400BD3B27 /* AgentsViewController.m in Sources */,
 				CF6D6DC21A30813C00C8CADA /* FreakType+Model.m in Sources */,
+				CFFA1BE01BA1351000C0CB8A /* AgentTableViewCell.m in Sources */,
 				CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
 				CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */,

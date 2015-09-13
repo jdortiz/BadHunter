@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, ImageStatus) {
 
 @property (strong, nonatomic) UIImage *agentPicture;
 @property (strong, nonatomic) ImageMapper *imageMapper;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) NSNotificationCenter *notificationCenter;
 
 @end
 
@@ -136,6 +138,7 @@ static const CGFloat pictureSide = 200.0;
 
 - (void) viewWillAppear:(BOOL)animated {
     [self addObserverForProperties];
+    [self addObserversForKeyboard];
 }
 
 
@@ -149,8 +152,22 @@ static const CGFloat pictureSide = 200.0;
 }
 
 
+- (void)addObserversForKeyboard {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(keyboardDidShow:)
+                                    name:UIKeyboardDidShowNotification
+                                  object:nil];
+    
+    [self.notificationCenter addObserver:self
+                                selector:@selector(keyboardWillHide:)
+                                    name:UIKeyboardWillHideNotification
+                                  object:nil];
+}
+
+
 - (void) viewDidDisappear:(BOOL)animated {
     [self removeObserverForProperties];
+    [self removeObserversForKeyboard];
 }
 
 
@@ -158,6 +175,16 @@ static const CGFloat pictureSide = 200.0;
     [self removeObserver:self forKeyPath:@"agent.destructionPower"];
     [self removeObserver:self forKeyPath:@"agent.motivation"];
     [self removeObserver:self forKeyPath:@"agent.appraisal"];
+}
+
+
+- (void)removeObserversForKeyboard {
+    [self.notificationCenter removeObserver:self
+                                       name:UIKeyboardDidShowNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:UIKeyboardWillHideNotification
+                                     object:nil];
 }
 
 
@@ -434,6 +461,35 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         }
     }
     textField.attributedText = coloredString;
+}
+
+
+#pragma mark - Keyboard handling
+
+- (void) keyboardDidShow:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    UIEdgeInsets contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardRect.size.height, 0.0);
+    self.scrollView.contentInset = contentInset;
+    self.scrollView.scrollIndicatorInsets = contentInset;
+}
+
+
+- (void) keyboardWillHide:(NSNotification *)notification {
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInset;
+    self.scrollView.scrollIndicatorInsets = contentInset;
+}
+
+
+#pragma mark - Notification center
+
+- (NSNotificationCenter *) notificationCenter {
+    if (_notificationCenter == nil) {
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+    }
+    
+    return _notificationCenter;
 }
 
 @end
