@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF31F3341BA4E99D00B7E2D5 /* PresenterAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31F3331BA4E99D00B7E2D5 /* PresenterAnimator.m */; };
 		CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */; };
 		CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB11A2F696C00C8CADA /* ImageMapper.m */; };
 		CF6D6DB61A30499700C8CADA /* UIImage+AgentAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D6DB51A30499700C8CADA /* UIImage+AgentAdjust.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF31F3321BA4E99D00B7E2D5 /* PresenterAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenterAnimator.h; sourceTree = "<group>"; };
+		CF31F3331BA4E99D00B7E2D5 /* PresenterAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenterAnimator.m; sourceTree = "<group>"; };
 		CF6D6DAA1A2F3AC000C8CADA /* Agent+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Agent+Model.h"; sourceTree = "<group>"; };
 		CF6D6DAB1A2F3AC000C8CADA /* Agent+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Agent+Model.m"; sourceTree = "<group>"; };
 		CF6D6DB01A2F696C00C8CADA /* ImageMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMapper.h; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */,
 				CFFA1BE11BA1737500C0CB8A /* CreditsViewController.h */,
 				CFFA1BE21BA1737500C0CB8A /* CreditsViewController.m */,
+				CF31F3321BA4E99D00B7E2D5 /* PresenterAnimator.h */,
+				CF31F3331BA4E99D00B7E2D5 /* PresenterAnimator.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				CF6D6DB21A2F696C00C8CADA /* ImageMapper.m in Sources */,
 				CF8B0E811A3607DA009E7BB4 /* Power+Model.m in Sources */,
 				CFB207C81A2DD6A400BD3B27 /* AgentEditViewController.m in Sources */,
+				CF31F3341BA4E99D00B7E2D5 /* PresenterAnimator.m in Sources */,
 				CF8B0E891A3687C4009E7BB4 /* Model.m in Sources */,
 				CF8B0E7B1A360709009E7BB4 /* Power.m in Sources */,
 				CF8B0E861A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m in Sources */,

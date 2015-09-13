@@ -12,6 +12,7 @@
 #import "Domain+Model.h"
 #import "ImageMapper.h"
 #import "AgentTableViewCell.h"
+#import "PresenterAnimator.h"
 
 
 @interface AgentsViewController ()
@@ -30,6 +31,7 @@
 
 static NSString *const segueCreateAgent = @"CreateAgent";
 static NSString *const segueEditAgent = @"EditAgent";
+static NSString *const segueShowCredits = @"ShowCredits";
 static CGFloat estimatedHeight = 88;
 
 #pragma mark - Lifecycle
@@ -77,14 +79,16 @@ static CGFloat estimatedHeight = 88;
 #pragma mark - Segues
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:segueCreateAgent]) {
+    if ([segue.identifier isEqualToString:segueCreateAgent]) {
         AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
         [self prepareAgentEditViewController:agentEditVC withAgent:nil];
-    } else if ([[segue identifier] isEqualToString:segueEditAgent]) {
+    } else if ([segue.identifier isEqualToString:segueEditAgent]) {
         AgentEditViewController *agentEditVC = (AgentEditViewController *)[[segue destinationViewController] topViewController];
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         Agent *agent = [self.fetchedResultsController objectAtIndexPath:selectedIndexPath];
         [self prepareAgentEditViewController:agentEditVC withAgent:agent];
+    } else if ([segue.identifier isEqualToString:segueShowCredits]) {
+        ((UIViewController *)segue.destinationViewController).transitioningDelegate = self;
     }
 }
 
@@ -290,6 +294,17 @@ static CGFloat estimatedHeight = 88;
     
 }
 
+
+#pragma mark - View Controller Transitioning Delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [[PresenterAnimator alloc] initForwardTransition:YES];
+}
+
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[PresenterAnimator alloc] initForwardTransition:NO];
+}
 
 
 #pragma mark - Lazy instantiantion for dependency injection
