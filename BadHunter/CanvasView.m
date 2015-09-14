@@ -12,32 +12,33 @@
 
 @implementation CanvasView
 
+#pragma mark - Constants & Parameters
+
+static const NSUInteger pointsPentagon = 5;
+
+#pragma mark - Drawing
+
 - (void)drawRect:(CGRect)rect {
-
-    CGRect firstRectangle = CGRectInset(rect, 5.0, 5.0);
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:firstRectangle];
-    [[UIColor purpleColor] setFill];
-    [bezierPath fill];
-
-    CGRect secondRect = CGRectInset(firstRectangle, 5.0, 5.0);
-    bezierPath = [UIBezierPath bezierPathWithRoundedRect:secondRect cornerRadius:5.0];
-    [[UIColor redColor] setFill];
-    [bezierPath fill];
-
-    CGRect thirdRect = CGRectOffset(CGRectInset(secondRect, 5.0, 5.0), 35.0, 0.0);
-    bezierPath = [UIBezierPath bezierPathWithOvalInRect:thirdRect];
-    [[UIColor orangeColor] setFill];
-    [bezierPath fill];
-
-    bezierPath = [UIBezierPath bezierPath];
-    [bezierPath moveToPoint:CGPointMake(CGRectGetWidth(rect)/2.0, CGRectGetHeight(rect)/2.0)];
-    [bezierPath addLineToPoint:CGPointMake(2.0, 2.0)];
-    [bezierPath addLineToPoint:CGPointMake(CGRectGetHeight(rect)-2.0, 2.0)];
-    [bezierPath addLineToPoint:CGPointMake(CGRectGetWidth(rect)/2.0, CGRectGetHeight(rect)/2.0)];
-    [[UIColor blueColor] setStroke];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    UIBezierPath *circle;
+    [bezierPath moveToPoint:[self calculatePolygonPoint:0 totalPoints:pointsPentagon radius:CGRectGetWidth(rect)/2.0]];
+    [[UIColor darkGrayColor] setFill];
+    for (NSUInteger i = 1; i <= pointsPentagon; i++) {
+        CGPoint corner = [self calculatePolygonPoint:i totalPoints:pointsPentagon radius:(CGRectGetWidth(rect)/2.0 - 1.0)];
+        [bezierPath addLineToPoint:corner];
+        circle = [UIBezierPath bezierPathWithArcCenter:corner radius:4.0 startAngle:0.0 endAngle:2.0*M_PI clockwise:YES];
+        [circle fill];
+    }
+    [[UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0] setStroke];
     [bezierPath stroke];
+}
 
 
+#pragma mark - Auxiliary Calculations
+
+- (CGPoint) calculatePolygonPoint:(NSUInteger)pointNumber totalPoints:(NSUInteger)totalPoints radius:(CGFloat)radius {
+    double arcFraction = M_PI * (2.0 * pointNumber - 0.5) / totalPoints;
+    return CGPointMake(radius*(cos(arcFraction) + 1.0), radius * (sin(arcFraction) + 1.0));
 }
 
 @end
