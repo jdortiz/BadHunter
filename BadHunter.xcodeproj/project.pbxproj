@@ -24,6 +24,7 @@
 		CF8B0E831A360B4E009E7BB4 /* Map1To2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E821A360B4E009E7BB4 /* Map1To2.xcmappingmodel */; };
 		CF8B0E861A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E851A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m */; };
 		CF8B0E891A3687C4009E7BB4 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8B0E881A3687C4009E7BB4 /* Model.m */; };
+		CFA7601F1BA753050070AA1D /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA7601E1BA753050070AA1D /* CanvasView.m */; };
 		CFB207BC1A2DD6A400BD3B27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BB1A2DD6A400BD3B27 /* main.m */; };
 		CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB207BE1A2DD6A400BD3B27 /* AppDelegate.m */; };
 		CFB207C21A2DD6A400BD3B27 /* BadHunter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFB207C01A2DD6A400BD3B27 /* BadHunter.xcdatamodeld */; };
@@ -78,6 +79,8 @@
 		CF8B0E851A360CF1009E7BB4 /* AgentToAgentMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgentToAgentMigrationPolicy.m; sourceTree = "<group>"; };
 		CF8B0E871A3687C4009E7BB4 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		CF8B0E881A3687C4009E7BB4 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		CFA7601D1BA753050070AA1D /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		CFA7601E1BA753050070AA1D /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		CFB207B61A2DD6A400BD3B27 /* BadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB207BA1A2DD6A400BD3B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFB207BB1A2DD6A400BD3B27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -145,6 +148,26 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		CFA760181BA751F90070AA1D /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				CF31F3321BA4E99D00B7E2D5 /* PresenterAnimator.h */,
+				CF31F3331BA4E99D00B7E2D5 /* PresenterAnimator.m */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
+		CFA7601C1BA752870070AA1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */,
+				CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */,
+				CFA7601D1BA753050070AA1D /* CanvasView.h */,
+				CFA7601E1BA753050070AA1D /* CanvasView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		CFB207AD1A2DD6A400BD3B27 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +192,8 @@
 				CFF9EF351A2E3F8F008510EF /* Model */,
 				CFF9EF361A2E3FA5008510EF /* App Delegate */,
 				CFF9EF371A2E3FB6008510EF /* View Controllers */,
+				CFA7601C1BA752870070AA1D /* Views */,
+				CFA760181BA751F90070AA1D /* Animators */,
 				CF6D6DB31A2F697A00C8CADA /* Auxiliary */,
 				CFB207C91A2DD6A400BD3B27 /* Main.storyboard */,
 				CFB207CC1A2DD6A400BD3B27 /* Images.xcassets */,
@@ -251,12 +276,8 @@
 				CFF9EF311A2DF1BA008510EF /* AgentEditViewControllerDelegate.h */,
 				CFB207C61A2DD6A400BD3B27 /* AgentEditViewController.h */,
 				CFB207C71A2DD6A400BD3B27 /* AgentEditViewController.m */,
-				CFFA1BDE1BA1351000C0CB8A /* AgentTableViewCell.h */,
-				CFFA1BDF1BA1351000C0CB8A /* AgentTableViewCell.m */,
 				CFFA1BE11BA1737500C0CB8A /* CreditsViewController.h */,
 				CFFA1BE21BA1737500C0CB8A /* CreditsViewController.m */,
-				CF31F3321BA4E99D00B7E2D5 /* PresenterAnimator.h */,
-				CF31F3331BA4E99D00B7E2D5 /* PresenterAnimator.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -373,6 +394,7 @@
 				CFFA1BE01BA1351000C0CB8A /* AgentTableViewCell.m in Sources */,
 				CF6D6DAC1A2F3AC000C8CADA /* Agent+Model.m in Sources */,
 				CFB207BF1A2DD6A400BD3B27 /* AppDelegate.m in Sources */,
+				CFA7601F1BA753050070AA1D /* CanvasView.m in Sources */,
 				CFFA1BE31BA1737500C0CB8A /* CreditsViewController.m in Sources */,
 				CF6D6DC51A308F9F00C8CADA /* Domain+Model.m in Sources */,
 				CF6D6DBC1A306F7400C8CADA /* Domain.m in Sources */,

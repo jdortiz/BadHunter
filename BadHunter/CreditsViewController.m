@@ -7,13 +7,13 @@
 //
 
 
-#import "CreditsViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "CreditsViewController.h"
+#import "CanvasView.h"
 
 @interface CreditsViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet CanvasView *iconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *initialVerticalConstraintCredits;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *finalVerticalConstraintCredits;
 
