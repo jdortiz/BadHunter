@@ -35,7 +35,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpz-ic-EVl" customClass="CanvasView">
                                 <rect key="frame" x="200" y="28" width="200" height="200"/>
-                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bpz-ic-EVl" secondAttribute="height" multiplier="1:1" id="dcN-4g-wCU"/>
                                     <constraint firstAttribute="height" constant="200" id="qao-Ah-Mml"/>

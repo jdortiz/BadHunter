@@ -16,12 +16,51 @@
 
 static const NSUInteger pointsPentagon = 5;
 
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+    return self;
+}
+
 #pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
     [self drawInvertedPentagonsInContext:context rect:rect];
+    [self drawCharacterInContext:context];
+
+//    [self drawToPDF:rect];
+}
+
+
+- (void) drawToPDF:(CGRect)rect {
+    NSMutableData *pdfData = [NSMutableData new];
+    CGDataConsumerRef dataConsumer = CGDataConsumerCreateWithCFData((CFMutableDataRef)pdfData);
+
+    const CGRect mediaBox = CGRectMake(0.0f, 0.0f, self.bounds.size.width, self.bounds.size.height);
+    CGContextRef pdfContext = CGPDFContextCreate(dataConsumer, &mediaBox, NULL);
+
+    UIGraphicsPushContext(pdfContext);
+
+    CGContextBeginPage(pdfContext, &mediaBox);
+
+    [self drawInvertedPentagonsInContext:pdfContext rect:rect];
+    [self drawCharacterInContext:pdfContext];
+
+    CGContextEndPage(pdfContext);
+    CGPDFContextClose(pdfContext);
+
+    UIGraphicsPopContext();
+
+    CGContextRelease(pdfContext);
+    CGDataConsumerRelease(dataConsumer);
+
+    NSURL *pdfURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject] URLByAppendingPathComponent:@"icon.pdf"];
+    [pdfData writeToURL:pdfURL atomically:YES];
 }
 
 
@@ -63,6 +102,42 @@ static const NSUInteger pointsPentagon = 5;
     CGPathAddEllipseInRect(circle, NULL, circleRect);
     CGContextAddPath(context, circle);
     CGContextSetStrokeColorWithColor(context, [[UIColor darkGrayColor] CGColor]);
+    CGContextFillPath(context);
+    CGContextRestoreGState(context);
+}
+
+
+- (void) drawCharacterInContext:(CGContextRef)context {
+    [self drawHeadAndEyesInContext:context];
+    [self drawTeethInContext:context];
+}
+
+
+- (void) drawHeadAndEyesInContext:(CGContextRef)context {
+    CGContextSaveGState(context);
+    CGMutablePathRef head = CGPathCreateMutable();
+    CGPathAddEllipseInRect(head, NULL, CGRectMake(25.0, 40.0, 150.0, 100.0));
+    CGAffineTransform rotationEye1 = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeTranslation(134.0, 80), -2.0*M_PI_4/9.0), -134.0, -80.0);
+    CGPathAddEllipseInRect(head, &rotationEye1, CGRectMake(104.0, 70.0, 60.0, 20.0));
+    CGAffineTransform rotationEye2 = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeTranslation(71, 80), 2.0*M_PI_4/9.0), -71.0, -80.0);
+    CGPathAddEllipseInRect(head, &rotationEye2, CGRectMake(41.0, 70.0, 60.0, 20.0));
+    CGContextAddPath(context, head);
+    CGPathRelease(head);
+    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
+    CGContextDrawPath(context, kCGPathEOFill);
+    CGContextRestoreGState(context);
+}
+
+- (void) drawTeethInContext:(CGContextRef)context {
+    CGContextSaveGState(context);
+    CGMutablePathRef teeth = CGPathCreateMutable();
+    CGPathAddRect(teeth, NULL, CGRectMake(36.0, 120.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(72.0, 128.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(108.0, 128.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(144.0, 120.0, 20.0, 30.0));
+    CGContextAddPath(context, teeth);
+    CGPathRelease(teeth);
+    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
     CGContextFillPath(context);
     CGContextRestoreGState(context);
 }
