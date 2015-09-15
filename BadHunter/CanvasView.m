@@ -21,12 +21,18 @@ static const NSUInteger pointsPentagon = 5;
 - (void)drawRect:(CGRect)rect {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawPentagonInContext:context rect:rect];
+}
 
+
+- (void) drawPentagonInContext:(CGContextRef)context rect:(CGRect)rect {
+    CGContextSaveGState(context);
     CGMutablePathRef pentagon = CGPathCreateMutable();
     CGPoint initialPoint = [self calculatePolygonPoint:0 totalPoints:pointsPentagon radius:(CGRectGetWidth(rect)/2.0 - 1.0)];
     CGPathMoveToPoint(pentagon, NULL, initialPoint.x, initialPoint.y);
     for (NSUInteger i = 1; i <= pointsPentagon; i++) {
         CGPoint corner = [self calculatePolygonPoint:i totalPoints:pointsPentagon radius:(CGRectGetWidth(rect)/2.0 - 1.0)];
+        [self drawCircleInContext:context atPoint:corner];
         CGPathAddLineToPoint(pentagon, NULL, corner.x, corner.y);
     }
     CGContextAddPath(context, pentagon);
@@ -35,20 +41,19 @@ static const NSUInteger pointsPentagon = 5;
     CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0] CGColor]);
 
     CGContextStrokePath(context);
+    CGContextRestoreGState(context);
+}
 
 
-//    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-//    UIBezierPath *circle;
-//    [bezierPath moveToPoint:];
-//    [[UIColor darkGrayColor] setFill];
-//    for (NSUInteger i = 1; i <= pointsPentagon; i++) {
-//        CGPoint corner = [self calculatePolygonPoint:i totalPoints:pointsPentagon radius:(CGRectGetWidth(rect)/2.0 - 1.0)];
-//        [bezierPath addLineToPoint:corner];
-//        circle = [UIBezierPath bezierPathWithArcCenter:corner radius:4.0 startAngle:0.0 endAngle:2.0*M_PI clockwise:YES];
-//        [circle fill];
-//    }
-//    [[UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0] setStroke];
-//    [bezierPath stroke];
+- (void) drawCircleInContext:(CGContextRef)context atPoint:(CGPoint)corner {
+    CGContextSaveGState(context);
+    CGRect circleRect = CGRectMake(corner.x-2.0, corner.y-2.0, 4.0, 4.0);
+    CGMutablePathRef circle = CGPathCreateMutable();
+    CGPathAddEllipseInRect(circle, NULL, circleRect);
+    CGContextAddPath(context, circle);
+    CGContextSetStrokeColorWithColor(context, [[UIColor darkGrayColor] CGColor]);
+    CGContextFillPath(context);
+    CGContextRestoreGState(context);
 }
 
 
