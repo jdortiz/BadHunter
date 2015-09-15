@@ -32,6 +32,35 @@ static const NSUInteger pointsPentagon = 5;
     CGContextClearRect(context, rect);
     [self drawInvertedPentagonsInContext:context rect:rect];
     [self drawCharacterInContext:context];
+
+//    [self drawToPDF:rect];
+}
+
+
+- (void) drawToPDF:(CGRect)rect {
+    NSMutableData *pdfData = [NSMutableData new];
+    CGDataConsumerRef dataConsumer = CGDataConsumerCreateWithCFData((CFMutableDataRef)pdfData);
+
+    const CGRect mediaBox = CGRectMake(0.0f, 0.0f, self.bounds.size.width, self.bounds.size.height);
+    CGContextRef pdfContext = CGPDFContextCreate(dataConsumer, &mediaBox, NULL);
+
+    UIGraphicsPushContext(pdfContext);
+
+    CGContextBeginPage(pdfContext, &mediaBox);
+
+    [self drawInvertedPentagonsInContext:pdfContext rect:rect];
+    [self drawCharacterInContext:pdfContext];
+
+    CGContextEndPage(pdfContext);
+    CGPDFContextClose(pdfContext);
+
+    UIGraphicsPopContext();
+
+    CGContextRelease(pdfContext);
+    CGDataConsumerRelease(dataConsumer);
+
+    NSURL *pdfURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject] URLByAppendingPathComponent:@"icon.pdf"];
+    [pdfData writeToURL:pdfURL atomically:YES];
 }
 
 
