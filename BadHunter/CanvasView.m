@@ -16,11 +16,20 @@
 
 static const NSUInteger pointsPentagon = 5;
 
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+    return self;
+}
+
 #pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
     [self drawInvertedPentagonsInContext:context rect:rect];
     [self drawCharacterInContext:context];
 }
