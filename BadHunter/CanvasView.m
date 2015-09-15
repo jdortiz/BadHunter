@@ -22,6 +22,7 @@ static const NSUInteger pointsPentagon = 5;
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     [self drawInvertedPentagonsInContext:context rect:rect];
+    [self drawCharacterInContext:context];
 }
 
 
@@ -63,6 +64,42 @@ static const NSUInteger pointsPentagon = 5;
     CGPathAddEllipseInRect(circle, NULL, circleRect);
     CGContextAddPath(context, circle);
     CGContextSetStrokeColorWithColor(context, [[UIColor darkGrayColor] CGColor]);
+    CGContextFillPath(context);
+    CGContextRestoreGState(context);
+}
+
+
+- (void) drawCharacterInContext:(CGContextRef)context {
+    [self drawHeadAndEyesInContext:context];
+    [self drawTeethInContext:context];
+}
+
+
+- (void) drawHeadAndEyesInContext:(CGContextRef)context {
+    CGContextSaveGState(context);
+    CGMutablePathRef head = CGPathCreateMutable();
+    CGPathAddEllipseInRect(head, NULL, CGRectMake(25.0, 40.0, 150.0, 100.0));
+    CGAffineTransform rotationEye1 = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeTranslation(134.0, 80), -2.0*M_PI_4/9.0), -134.0, -80.0);
+    CGPathAddEllipseInRect(head, &rotationEye1, CGRectMake(104.0, 70.0, 60.0, 20.0));
+    CGAffineTransform rotationEye2 = CGAffineTransformTranslate(CGAffineTransformRotate(CGAffineTransformMakeTranslation(71, 80), 2.0*M_PI_4/9.0), -71.0, -80.0);
+    CGPathAddEllipseInRect(head, &rotationEye2, CGRectMake(41.0, 70.0, 60.0, 20.0));
+    CGContextAddPath(context, head);
+    CGPathRelease(head);
+    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
+    CGContextDrawPath(context, kCGPathEOFill);
+    CGContextRestoreGState(context);
+}
+
+- (void) drawTeethInContext:(CGContextRef)context {
+    CGContextSaveGState(context);
+    CGMutablePathRef teeth = CGPathCreateMutable();
+    CGPathAddRect(teeth, NULL, CGRectMake(36.0, 120.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(72.0, 128.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(108.0, 128.0, 20.0, 30.0));
+    CGPathAddRect(teeth, NULL, CGRectMake(144.0, 120.0, 20.0, 30.0));
+    CGContextAddPath(context, teeth);
+    CGPathRelease(teeth);
+    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
     CGContextFillPath(context);
     CGContextRestoreGState(context);
 }
