@@ -21,7 +21,18 @@ static const NSUInteger pointsPentagon = 5;
 - (void)drawRect:(CGRect)rect {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawInvertedPentagonsInContext:context rect:rect];
+}
+
+
+- (void)drawInvertedPentagonsInContext:(CGContextRef)context rect:(CGRect)rect {
+    CGContextSaveGState(context);
     [self drawPentagonInContext:context rect:rect];
+    CGContextTranslateCTM(context, CGRectGetWidth(rect)/2.0, CGRectGetHeight(rect)/2.0);
+    CGContextRotateCTM(context, M_PI);
+    CGContextTranslateCTM(context, -CGRectGetWidth(rect)/2.0, -CGRectGetHeight(rect)/2.0);
+    [self drawPentagonInContext:context rect:rect];
+    CGContextRestoreGState(context);
 }
 
 
