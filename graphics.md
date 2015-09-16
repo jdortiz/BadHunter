@@ -162,3 +162,19 @@ It is very useful to be able to generate a PDF from our content.
     and open it.
 15. Comment out the invokation to the pdf creation since this
     shouldn't happen everytime.
+
+## Make the custom view more accessible from Interface Builder
+1. In the header of the custom view, right before the first line of
+   the interface definition add a line saying IB_Designable.
+2. Go to Xcode and notice that it can be visualized there although it
+   takes a while. Notice that the problems with the background aren't
+   solved here.
+3. Add two properties one for the color of the lines of the
+   pentagons, another one for its width.
+4. Before the class of the properties add IBInspectable. Notice that
+   the properties are now available when you inspect the view.
+5. Use these properties in the drawing code.
+6. Now make some changes in the inspector and verify that the preview changes.
+7. Run it and check the results.
+8. In order to set default values for this properties, do that in the
+   initWithCoder overriden initializer.

@@ -6,8 +6,14 @@
 //  Copyright (c) 2015 PoWWaU. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
+
+IB_DESIGNABLE
 @interface CanvasView : UIView
+
+@property (strong, nonatomic) IBInspectable UIColor *lineColor;
+@property (assign, nonatomic) IBInspectable NSUInteger lineWidth;
 
 @end
