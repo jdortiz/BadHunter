@@ -90,10 +90,91 @@ affect to the state of the context.
 7. Remove the old context.
 
 ## Take advantage of modularity
-1. After drawing the first pentagon, translate the context so the origin is at the middle of the context.
+Now that the code to draw is more modular, it is easier to make more
+complex drawing and to understand how they are done.
+1. After drawing the first pentagon, translate the context so the
+   origin is at the middle of the context.
 2. Rotate the context 180 degrees (M_PI).
 3. Translate back to the previous origin.
 4. Draw a second pentagon.
 5. Move all the code to draw both pentagons into a new method.
 6. At the begining and end of the method, respectively, save and
    restore the state of the context.
+
+## Draw the character
+Complete the drawing for the icon. Use as a reference the original
+image.
+1. Make an ellipse embedded in a rectagle that is (150, 100). Draw it
+   at (25,40).
+2. Fill it.
+3. Extract the new ellipse for the head into a new method.
+4. At the begining and end of the method, respectively, save and
+   restore the state of the context.
+5. Set the fill color to black.
+6. Draw the eyes with elipses of (60.0, 40). The horizontal position of
+   the right one should be 4 points to the right of the horizontal
+   center and its vertical center should be at one fourth the height
+   of the image.
+7. The second one should be in the simetrical position vertically.
+8. Notice that they are not shown because the color is the same as the
+   one for the main ellipse. In order to get the eyes to be empty, use
+   the kCGPathEOFill option when drawing the path.
+9. Make the right eye to be rotated from its center 20 degrees
+   counter-clockwise, and the left one 20 degrees clockwise.
+10. The 4 teeth are rectangles of size (20,30) displayed at (36.0,
+    120.0), (72.0, 128.0), (108.0, 128.0), and (144.0, 120.0).
+11. Note that the intersections of the teeth with the head is not
+    shown. Put them in a different path.
+
+## Make the view transparent
+There are some things that need to be done if we want our background
+to be transparent.
+1. Change back background color of the view to transparent.
+2. Run it and check if the view is transparent to the fire effect.
+3. Try to find which path is responsible for this issue.
+4. Right after getting the current context in order to use it to draw,
+   clear with CGContextClearRect(context, rect);
+5. Run it and check if the view is transparent to the fire effect.
+6. Override the designated initializer initWithCoder and clear the
+   background of the view.
+7. Run it and check if the view is transparent to the fire effect.
+
+
+## Save image to PDF
+It is very useful to be able to generate a PDF from our content.
+1. In a new method, create a NSMutableData object to hold the contents
+   of the PDF.
+2. Make a data consumer (CGDataConsumerRef) from the previous object.
+3. Define the rectangle that will contain the contents with bounds of
+   this view.
+4. Create a PDF context with the data consumer and the rectangle for
+   the contents.
+5. Push this CG context so it becomes the current context.
+6. Begin a new PDF page.
+7. Make the drawing with the previously defined methods.
+8. End the page.
+9. Close the context.
+10. Pop the CG context.
+11. Release the context and the data consumer.
+12. Write the NSMutable data to a URL.
+13. Invoke this method in draw method after the normal drawing.
+14. Run it in the simulator and look for this file in the filesystem
+    and open it.
+15. Comment out the invokation to the pdf creation since this
+    shouldn't happen everytime.
+
+## Make the custom view more accessible from Interface Builder
+1. In the header of the custom view, right before the first line of
+   the interface definition add a line saying IB_Designable.
+2. Go to Xcode and notice that it can be visualized there although it
+   takes a while. Notice that the problems with the background aren't
+   solved here.
+3. Add two properties one for the color of the lines of the
+   pentagons, another one for its width.
+4. Before the class of the properties add IBInspectable. Notice that
+   the properties are now available when you inspect the view.
+5. Use these properties in the drawing code.
+6. Now make some changes in the inspector and verify that the preview changes.
+7. Run it and check the results.
+8. In order to set default values for this properties, do that in the
+   initWithCoder overriden initializer.

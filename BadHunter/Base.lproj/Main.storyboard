@@ -39,6 +39,11 @@
                                     <constraint firstAttribute="width" secondItem="bpz-ic-EVl" secondAttribute="height" multiplier="1:1" id="dcN-4g-wCU"/>
                                     <constraint firstAttribute="height" constant="200" id="qao-Ah-Mml"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="753" text="BadHunter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-p5-XAw">
                                 <rect key="frame" x="16" y="248" width="525" height="20"/>

@@ -19,6 +19,8 @@ static const NSUInteger pointsPentagon = 5;
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self setBackgroundColor:[UIColor clearColor]];
+        self.lineColor = [UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0];
+        self.lineWidth = 2.0;
     }
 
     return self;
@@ -87,8 +89,8 @@ static const NSUInteger pointsPentagon = 5;
     }
     CGContextAddPath(context, pentagon);
     CGPathRelease(pentagon);
-    CGContextSetLineWidth(context, 2.0);
-    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0] CGColor]);
+    CGContextSetLineWidth(context, self.lineWidth);
+    CGContextSetStrokeColorWithColor(context,  [self.lineColor CGColor]); //[[UIColor colorWithHue:352.0/360.0 saturation:1.0 brightness:0.77 alpha:1.0] CGColor]);
 
     CGContextStrokePath(context);
     CGContextRestoreGState(context);
